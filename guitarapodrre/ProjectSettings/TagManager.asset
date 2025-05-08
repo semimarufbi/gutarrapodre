@@ -5,11 +5,13 @@ TagManager:
   serializedVersion: 2
   tags:
   - Activator
+  - DARig
+  - chao
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - chao
   - Water
   - UI
   - 

@@ -252,7 +252,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!70 &427829425
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -288,6 +288,31 @@ CapsuleCollider2D:
   m_Offset: {x: -0.09019935, y: 1.575928}
   m_Size: {x: 1.136143, y: 3.2213783}
   m_Direction: 0
+--- !u!95 &427829426 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 4822398208353430945, guid: ee14459f600f6ec4783a1f1bae436bcc, type: 3}
+  m_PrefabInstance: {fileID: 1363445526}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &427829429
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 427829420}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d1286ca3375beb940b921f1cd71356d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  velocidade: 5
+  animacao: {fileID: 427829426}
+  jumpForce: 300
+  groundCheck: {fileID: 1349539905}
+  groundCheckRadius: 0.2
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 8
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -391,9 +416,9 @@ GameObject:
   - component: {fileID: 1349539905}
   - component: {fileID: 1349539904}
   - component: {fileID: 1349539903}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Texture_Grass_Diffuse
-  m_TagString: Untagged
+  m_TagString: chao
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -572,6 +597,9 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 1908850870069242641, guid: ee14459f600f6ec4783a1f1bae436bcc, type: 3}
       insertIndex: -1
+      addedObject: {fileID: 427829429}
+    - targetCorrespondingSourceObject: {fileID: 1908850870069242641, guid: ee14459f600f6ec4783a1f1bae436bcc, type: 3}
+      insertIndex: -1
       addedObject: {fileID: 427829425}
     - targetCorrespondingSourceObject: {fileID: 1908850870069242641, guid: ee14459f600f6ec4783a1f1bae436bcc, type: 3}
       insertIndex: -1
@@ -632,11 +660,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 404906, guid: b6ed95875921a1f4f9c6f17b9f812b11, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 7.96
+      value: 1.87
       objectReference: {fileID: 0}
     - target: {fileID: 404906, guid: b6ed95875921a1f4f9c6f17b9f812b11, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.09
+      value: -1.99
       objectReference: {fileID: 0}
     - target: {fileID: 404906, guid: b6ed95875921a1f4f9c6f17b9f812b11, type: 3}
       propertyPath: m_LocalPosition.z
