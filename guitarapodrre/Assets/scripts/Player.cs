@@ -6,6 +6,7 @@ public class Player : MonoBehaviour
 {
     private float inputHorizontal;
     private Rigidbody2D rb;
+
     [SerializeField] private int velocidade = 5;
     [SerializeField] private Animator animacao;
 
@@ -24,16 +25,22 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
+        // Captura o input horizontal
         inputHorizontal = Input.GetAxis("Horizontal");
+
+        // Flip visual do personagem
         spriteFlip(inputHorizontal);
 
+        // Verifica se está no chão
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
 
+        // Permite pulo duplo ao tocar o chão
         if (isGrounded)
         {
             canDoubleJump = true;
         }
 
+        // Lógica de pulo e pulo duplo
         if (Input.GetKeyDown(KeyCode.Space))
         {
             if (isGrounded)
@@ -51,25 +58,27 @@ public class Player : MonoBehaviour
             }
         }
 
-        // Lógica de animação com 'parado' e sem conflito
+        // Lógica das animações de movimento
         if (!isGrounded)
         {
-            animacao.SetBool("parado", false); // No ar, desativa "parado"
+            animacao.SetBool("parado", false); // Desativa idle no ar
+            animacao.SetBool("andando", false); // Desativa andar no ar
         }
         else if (Mathf.Abs(inputHorizontal) > 0.01f)
         {
-            animacao.SetBool("parado", false); // Está andando
-            animacao.SetBool("andando", true);//ativa a movimentação de andar
+            animacao.SetBool("parado", false); // Desativa idle ao andar
+            animacao.SetBool("andando", true); // Ativa andar
         }
         else
         {
-            animacao.SetBool("andando", false);   
-            animacao.SetBool("parado", true); // Está no chão e parado
+            animacao.SetBool("andando", false); // Desativa andar
+            animacao.SetBool("parado", true); // Ativa idle
         }
     }
 
     private void FixedUpdate()
     {
+        // Aplica movimento horizontal
         rb.velocity = new Vector2(inputHorizontal * velocidade, rb.velocity.y);
     }
 
