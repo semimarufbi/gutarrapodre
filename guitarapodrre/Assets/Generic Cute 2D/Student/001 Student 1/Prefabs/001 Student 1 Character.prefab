@@ -25,6 +25,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1908850870069242641}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -32,7 +33,6 @@ Transform:
   m_Children:
   - {fileID: 9149938329668039206}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!210 &5671074042809019823
 SortingGroup:
@@ -45,9 +45,10 @@ SortingGroup:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_SortAtRoot: 0
 --- !u!95 &4822398208353430945
 Animator:
-  serializedVersion: 4
+  serializedVersion: 5
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -64,7 +65,8 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &2133635629936236740
 GameObject:
   m_ObjectHideFlags: 0
@@ -90,13 +92,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2133635629936236740}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: -0.7071068, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7011231693382914390}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
 --- !u!212 &708671614854917522
 SpriteRenderer:
@@ -161,13 +163,19 @@ SortingGroup:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 18
+  m_SortAtRoot: 0
 --- !u!1001 &7625942607114128376
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 3
     m_TransformParent: {fileID: 8711184764569554572}
     m_Modifications:
+    - target: {fileID: -9044302080663005823, guid: cb0e23ec9b58ceb42aac93e54e27045e, type: 3}
+      propertyPath: m_FlipX
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: -8653719598885068355, guid: cb0e23ec9b58ceb42aac93e54e27045e, type: 3}
       propertyPath: m_Name
       value: Skeletal
@@ -424,6 +432,10 @@ PrefabInstance:
       propertyPath: m_Bounds.m_Extent.y
       value: 0.37986034
       objectReference: {fileID: 0}
+    - target: {fileID: 7218525908945723490, guid: cb0e23ec9b58ceb42aac93e54e27045e, type: 3}
+      propertyPath: m_FlipX
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 9012380837478471553, guid: cb0e23ec9b58ceb42aac93e54e27045e, type: 3}
       propertyPath: m_Bounds.m_Center.x
       value: 0.0004043579
@@ -433,6 +445,12 @@ PrefabInstance:
       value: 0.00047251582
       objectReference: {fileID: 0}
     m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: -8604078201355806034, guid: cb0e23ec9b58ceb42aac93e54e27045e, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3238387738078605223}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 4843985084834002234, guid: cb0e23ec9b58ceb42aac93e54e27045e, type: 3}
 --- !u!4 &7011231693382914390 stripped
 Transform:
