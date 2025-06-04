@@ -7,35 +7,34 @@ public class gameManager : MonoBehaviour
 
     public AudioSource theMusic;
     public bool startPlaying;
-    public beatScroller theBS;
+    public beatScroller theBS; // arraste o objeto que tem beatScroller aqui
     public static gameManager instance;
 
-
-    // Start is called before the first frame update
     void Start()
     {
         instance = this;
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        if (!startPlaying)
+        if (theBS == null)
         {
-            if (Input.anyKeyDown)
-            {
-                startPlaying = true;
-                theBS.hasStarted = true;
-
-                theMusic.Play();
-            }
+            Debug.LogError("BeatScroller não está referenciado no Inspector!");
         }
     }
+
+    void Update()
+    {
+        if (!startPlaying && Input.anyKeyDown)
+        {
+            startPlaying = true;
+            theBS.hasStarted = true;
+            theMusic.Play();
+        }
+    }
+
     public void NoteHit()
     {
         Debug.Log("hit on time");
     }
-    public void NoteMissed() 
+    public void NoteMissed()
     {
         Debug.Log("Missed note");
     }

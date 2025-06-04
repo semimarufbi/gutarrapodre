@@ -1,34 +1,29 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.Collections;
 using UnityEngine;
 
 public class beatScroller : MonoBehaviour
 {
-    public float beatTempo;
-    public bool hasStarted;
+    public bool hasStarted = false;
+    public float noteTravelTime = 2f;
+    private Vector3 moveDirection;
 
-
-    // Start is called before the first frame update
     void Start()
     {
-        beatTempo = beatTempo / 60f;
+        moveDirection = new Vector3(0f, -1f, 0f) / noteTravelTime;
     }
 
-    // Update is called once per frame
     void Update()
     {
-        if (!hasStarted)
+        if (hasStarted)
         {
-           /* if (Input.anyKeyDown)
-            {
-                hasStarted = true;
-            }*/
+            transform.position += moveDirection * Time.deltaTime;
+        }
+    }
 
-        }
-        else
-        {
-            transform.position -= new Vector3(0f,beatTempo*Time.deltaTime,0f);
-        }
+    public void SetTravelTime(float travelTime)
+    {
+        noteTravelTime = travelTime;
+        moveDirection = new Vector3(0f, -1f, 0f) / noteTravelTime;
+
+        hasStarted = true; // <- ESSA LINHA ATIVA O MOVIMENTO
     }
 }
