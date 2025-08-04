@@ -1,43 +1,55 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class noteObject : MonoBehaviour
-    
 {
     public KeyCode keyToPress;
     public bool canBePressed;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
+    [HideInInspector] public int laneIndex;
+    [HideInInspector] public noteSpa spawner;
+
     void Update()
     {
-        if (Input.GetKeyDown(keyToPress))
+        if (Input.GetKeyDown(keyToPress) && canBePressed)
+        {
+            gameManager.instance.NoteHit();
+            NotifyDestroyed();
+            Destroy(gameObject);
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("Activator"))
+        {
+            canBePressed = true;
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.CompareTag("Activator"))
         {
             if (canBePressed)
             {
-                gameObject.SetActive(false);
-                gameManager.instance.NoteHit();
+                canBePressed = false;
+                gameManager.instance.NoteMissed();
+                NotifyDestroyed();
+                Destroy(gameObject);
             }
         }
     }
-    private void OnTriggerEnter2D(Collider2D other)
+
+    void OnDestroy()
     {
-        if(other.tag == "Activator") 
-        {
-          canBePressed = true;
-        }
+        NotifyDestroyed();
     }
-    private void OnTriggerExit2D(Collider2D other)
+
+    void NotifyDestroyed()
     {
-        if (other.tag == "Activator")
-        { 
-            canBePressed = false; 
-            gameManager.instance.NoteMissed();
+        if (spawner != null)
+        {
+            spawner.OnNoteDestroyed(laneIndex);
         }
     }
 }
