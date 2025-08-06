@@ -1,21 +1,10 @@
 {
-    "musica": "gutarrapodre.mp3",
+    "musica": "minhaMusica",
     "notas": [
-        {
-            "tempo": 1.0,
-            "lane": 0
-        },
-        {
-            "tempo": 1.5,
-            "lane": 1
-        },
-        {
-            "tempo": 2.0,
-            "lane": 2
-        },
-        {
-            "tempo": 2.5,
-            "lane": 3
-        }
+      { "time": 1.5, "line": 0 },
+      { "time": 2.0, "line": 1 },
+      { "time": 3.2, "line": 2 },
+      { "time": 4.0, "line": 3 }
     ]
-}
+  }
+  

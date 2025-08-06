@@ -1,5 +1,4 @@
 using UnityEngine;
-using System.Collections.Generic;
 
 public class NoteMapLoader : MonoBehaviour
 {
@@ -22,20 +21,24 @@ public class NoteMapLoader : MonoBehaviour
 
         float tempoAtual = musica.time;
 
-        while (proximaNotaIndex < mapa.notas.Length && tempoAtual >= mapa.notas[proximaNotaIndex].tempo)
+        while (proximaNotaIndex < mapa.notas.Length && tempoAtual >= mapa.notas[proximaNotaIndex].time)
         {
             SpawnNota(mapa.notas[proximaNotaIndex]);
             proximaNotaIndex++;
         }
     }
 
-    void SpawnNota(NoteData nota)
+    void SpawnNota(Note nota)
     {
-        if (nota.lane >= 0 && nota.lane < laneSpawners.Length)
+        if (nota.line >= 0 && nota.line < laneSpawners.Length)
         {
-            GameObject novaNota = Instantiate(notePrefab, laneSpawners[nota.lane].transform.position, Quaternion.identity);
+            GameObject novaNota = Instantiate(notePrefab, laneSpawners[nota.line].transform.position, Quaternion.identity);
             noteObject noteComp = novaNota.GetComponent<noteObject>();
-            noteComp.laneIndex = nota.lane;
+            noteComp.laneIndex = nota.line;
+        }
+        else
+        {
+            Debug.LogError($"Linha inválida: {nota.line}");
         }
     }
 }
