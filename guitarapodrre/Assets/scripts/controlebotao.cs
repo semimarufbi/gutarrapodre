@@ -2,13 +2,13 @@ using UnityEngine;
 
 public class controlebotao : MonoBehaviour
 {
-    public SpriteRenderer theSR;
+    private SpriteRenderer theSR;
     public Sprite defautImage;
     public Sprite imagepressed;
     public KeyCode keyTopress;
 
     private bool podePressionar = false;
-    private Collider2D notaNaArea = null; // guarda referência da nota que está no quadrado
+    private Collider2D notaNaArea = null; // referência da nota que está no quadrado
 
     void Start()
     {
@@ -18,28 +18,28 @@ public class controlebotao : MonoBehaviour
 
     void Update()
     {
-        if (podePressionar && notaNaArea != null)
+        // Troca o sprite sempre que tecla for pressionada
+        if (Input.GetKeyDown(keyTopress))
         {
-            if (Input.GetKeyDown(keyTopress))
+            theSR.sprite = imagepressed;
+
+            // Se tiver nota na área, destrói ela e contabiliza o hit
+            if (podePressionar && notaNaArea != null)
             {
-                theSR.sprite = imagepressed;
-
-                // Destrói a nota que está na área
                 Destroy(notaNaArea.gameObject);
-
-                // Avise o gameManager que a nota foi acertada, se quiser
-                // gameManager.instance.NoteHit();
+                gameManager.instance.NoteHit();
 
                 Debug.Log($"Nota acertada com a tecla {keyTopress}");
 
-                // Limpa a referência para evitar erro
                 notaNaArea = null;
                 podePressionar = false;
             }
-            if (Input.GetKeyUp(keyTopress))
-            {
-                theSR.sprite = defautImage;
-            }
+        }
+
+        // Quando soltar a tecla, volta para sprite padrão
+        if (Input.GetKeyUp(keyTopress))
+        {
+            theSR.sprite = defautImage;
         }
     }
 
@@ -56,12 +56,16 @@ public class controlebotao : MonoBehaviour
     {
         if (other.CompareTag("Note"))
         {
-            podePressionar = false;
-            theSR.sprite = defautImage;
-
-            // Limpa referência se a nota sair da área
+            // Se a nota sair sem ser pressionada, contabiliza perda
             if (notaNaArea == other)
+            {
                 notaNaArea = null;
+                podePressionar = false;
+
+                gameManager.instance.NoteMissed();
+
+                theSR.sprite = defautImage;
+            }
         }
     }
 }

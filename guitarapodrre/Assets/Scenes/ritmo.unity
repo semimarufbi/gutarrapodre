@@ -279,7 +279,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a4b2c2cf591daed439a8e1cc7d2df806, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  theSR: {fileID: 0}
   defautImage: {fileID: 21300000, guid: 1bbda9210988dfd4db252a09838d254f, type: 3}
   imagepressed: {fileID: 21300000, guid: cacc39dd2a4e88a43aadeddd73e9b1e2, type: 3}
   keyTopress: 102
@@ -687,7 +686,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a4b2c2cf591daed439a8e1cc7d2df806, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  theSR: {fileID: 0}
   defautImage: {fileID: 21300000, guid: ed2984e24d5df6f46a80ead6ad2964fa, type: 3}
   imagepressed: {fileID: 21300000, guid: 8f47ff751b3bdec48862adf0100c74fa, type: 3}
   keyTopress: 106
@@ -862,7 +860,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a4b2c2cf591daed439a8e1cc7d2df806, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  theSR: {fileID: 0}
   defautImage: {fileID: 21300000, guid: ad187f74f2d0cc4499f39a0267b9eda8, type: 3}
   imagepressed: {fileID: 21300000, guid: 18bf226de2d59284e904c26430f659c9, type: 3}
   keyTopress: 100
@@ -2568,7 +2565,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a4b2c2cf591daed439a8e1cc7d2df806, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  theSR: {fileID: 0}
   defautImage: {fileID: 21300000, guid: c3c13b1f8baa5dd4a86d3dc186668178, type: 3}
   imagepressed: {fileID: 21300000, guid: 2d10ec486261df445b73774ff82f1b69, type: 3}
   keyTopress: 107
