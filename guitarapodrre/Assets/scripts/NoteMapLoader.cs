@@ -1,9 +1,11 @@
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class NoteMapLoader : MonoBehaviour
 {
+    [Header("Configuração")]
     public TextAsset mapaJson;
-    public GameObject[] laneSpawners; // 1 para cada lane
+    public GameObject[] laneSpawners; // Um para cada lane
     public GameObject notePrefab;
     public AudioSource musica;
 
@@ -17,10 +19,11 @@ public class NoteMapLoader : MonoBehaviour
 
     void Update()
     {
-        if (!gameManager.instance.startPlaying || mapa == null) return;
+        if (mapa == null || !gameManager.instance.startPlaying) return;
 
         float tempoAtual = musica.time;
 
+        // Verifica se está na hora de instanciar a próxima nota
         while (proximaNotaIndex < mapa.notas.Length && tempoAtual >= mapa.notas[proximaNotaIndex].time)
         {
             SpawnNota(mapa.notas[proximaNotaIndex]);
@@ -32,13 +35,12 @@ public class NoteMapLoader : MonoBehaviour
     {
         if (nota.line >= 0 && nota.line < laneSpawners.Length)
         {
-            GameObject novaNota = Instantiate(notePrefab, laneSpawners[nota.line].transform.position, Quaternion.identity);
-            noteObject noteComp = novaNota.GetComponent<noteObject>();
-            noteComp.laneIndex = nota.line;
+            Vector3 posicao = laneSpawners[nota.line].transform.position;
+            Instantiate(notePrefab, posicao, Quaternion.identity);
         }
         else
         {
-            Debug.LogError($"Linha inválida: {nota.line}");
+            Debug.LogWarning($"Linha inválida: {nota.line}");
         }
     }
 }

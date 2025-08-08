@@ -12,10 +12,9 @@ GameObject:
   - component: {fileID: 2573163669092463677}
   - component: {fileID: 3888627472285898591}
   - component: {fileID: 4891859401501997032}
-  - component: {fileID: 1271552000451370826}
   m_Layer: 0
   m_Name: 'LeftArrow '
-  m_TagString: Untagged
+  m_TagString: Note
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -134,19 +133,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c6e0ef906832864a973ebb23e8b2edc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  keyToPress: 100
-  canBePressed: 0
---- !u!114 &1271552000451370826
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8705430350607140829}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 345c43e21926ef24ab6fd93bd6a27eca, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  hasStarted: 0
-  noteTravelTime: 2
+  speed: 5

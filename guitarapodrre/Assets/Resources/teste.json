@@ -1,0 +1,8 @@
+{
+  "notas": [
+    { "time": 0.1, "line": 0 },
+    { "time": 1.0, "line": 1 },
+    { "time": 2.0, "line": 2 },
+    { "time": 3.0, "line": 3 }
+  ]
+}

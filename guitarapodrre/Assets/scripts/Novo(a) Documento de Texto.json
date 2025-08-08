@@ -1,10 +1,7 @@
 {
-    "musica": "minhaMusica",
-    "notas": [
-      { "time": 1.5, "line": 0 },
-      { "time": 2.0, "line": 1 },
-      { "time": 3.2, "line": 2 },
-      { "time": 4.0, "line": 3 }
-    ]
-  }
-  
+  "notas": [
+    { "time": 1.0, "line": 0 },
+    { "time": 2.5, "line": 1 },
+    { "time": 3.2, "line": 2 }
+  ]
+}

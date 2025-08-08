@@ -1,32 +1,24 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 public class gameManager : MonoBehaviour
 {
-    public AudioSource theMusic;
-    public bool startPlaying;
     public static gameManager instance;
+    public bool startPlaying = false;
+    public AudioSource theMusic; // 🎵
 
-    void Start()
+    void Awake()
     {
-        instance = this;
+        if (instance == null) instance = this;
+        else Destroy(gameObject);
     }
 
     void Update()
     {
-        if (!startPlaying && Input.anyKeyDown)
+        // Exemplo: quando o jogador aperta espaço, começa
+        if (!startPlaying && Input.GetKeyDown(KeyCode.Space))
         {
             startPlaying = true;
             theMusic.Play();
         }
-    }
-
-    public void NoteHit()
-    {
-        Debug.Log("Acertou!");
-    }
-
-    public void NoteMissed()
-    {
-        Debug.Log("Errou!");
     }
 }

@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: -4933686334916338703}
   m_Layer: 0
   m_Name: 'RightArrow '
-  m_TagString: Untagged
+  m_TagString: Note
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -134,8 +134,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c6e0ef906832864a973ebb23e8b2edc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  keyToPress: 107
-  canBePressed: 0
+  speed: 5
 --- !u!114 &-4933686334916338703
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -148,5 +147,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 345c43e21926ef24ab6fd93bd6a27eca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  beatTempo: 0
   hasStarted: 0
-  noteTravelTime: 2

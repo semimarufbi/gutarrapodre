@@ -8,6 +8,7 @@ TagManager:
   - DARig
   - chao
   - gordo
+  - Note
   layers:
   - Default
   - TransparentFX

@@ -1,55 +1,47 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class noteSpa : MonoBehaviour
+public class NoteSpawner : MonoBehaviour
 {
-    public GameObject[] notePrefabs; // 0, 1, 2...
-    public Transform[] spawnPositions; // posições da nota nas 3 linhas
-    public string jsonFileName = "notemap"; // Nome do arquivo sem extensão
+    public TextAsset mapaJson;
+    public GameObject[] laneSpawners;   // posição inicial da nota para cada lane
+    public GameObject[] notePrefabs;    // prefab por lane
 
-    private Note loadedData;
-    private int nextNoteIndex = 0;
+    public float leadTime = 1f; // segundos antes do tempo da nota para spawnar
 
-    private void Start()
+    private NoteMap mapa;
+    private int proximaNotaIndex = 0;
+
+    void Start()
     {
-        LoadNoteMap();
-    }
-
-    void LoadNoteMap()
-    {
-        TextAsset jsonFile = Resources.Load<TextAsset>(jsonFileName);
-        if (jsonFile == null)
-        {
-            Debug.LogError("Arquivo JSON não encontrado em Resources!");
-            return;
-        }
-
-        loadedData = JsonUtility.FromJson<Note>(jsonFile.text);
+        mapa = JsonUtility.FromJson<NoteMap>(mapaJson.text);
     }
 
     void Update()
     {
-        if (!gameManager.instance.startPlaying || loadedData == null) return;
+        if (mapa == null || !gameManager.instance.startPlaying) return;
 
-        float songTime = gameManager.instance.theMusic.time;
+        // Pega o tempo atual da música direto do gameManager
+        float tempoAtual = gameManager.instance.theMusic.time;
 
-        while (nextNoteIndex < loadedData.notes.Count &&
-               loadedData.notes[nextNoteIndex].time <= songTime)
+        while (proximaNotaIndex < mapa.notas.Length &&
+               tempoAtual >= mapa.notas[proximaNotaIndex].time - leadTime)
         {
-            SpawnNote(loadedData.notes[nextNoteIndex]);
-            nextNoteIndex++;
+            SpawnNota(mapa.notas[proximaNotaIndex]);
+            proximaNotaIndex++;
         }
     }
 
-    void SpawnNote(Note note)
+    void SpawnNota(Note nota)
     {
-        if (note.line < 0 || note.line >= spawnPositions.Length)
+        if (nota.line >= 0 && nota.line < laneSpawners.Length && nota.line < notePrefabs.Length)
         {
-            Debug.LogError("Linha inválida: " + note.line);
-            return;
+            Vector3 pos = laneSpawners[nota.line].transform.position;
+            Instantiate(notePrefabs[nota.line], pos, Quaternion.identity);
         }
-
-        Instantiate(notePrefabs[note.line], spawnPositions[note.line].position, Quaternion.identity);
+        else
+        {
+            Debug.LogError("Linha inválida ou prefab não atribuído: " + nota.line);
+        }
     }
 }
+
