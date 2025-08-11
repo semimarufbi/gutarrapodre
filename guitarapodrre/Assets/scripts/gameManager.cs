@@ -5,10 +5,9 @@ public class gameManager : MonoBehaviour
     public static gameManager instance;
 
     public bool startPlaying = false;
-    public AudioSource theMusic; // áudio da música
-
+    public AudioSource theMusic;
     private int score = 0;
-    private int missed = 0;
+    private int misses = 0;
 
     void Awake()
     {
@@ -18,37 +17,23 @@ public class gameManager : MonoBehaviour
 
     void Update()
     {
-        // Começa a tocar e o jogo quando aperta espaço
+        // Inicia a música
         if (!startPlaying && Input.GetKeyDown(KeyCode.Space))
         {
             startPlaying = true;
             theMusic.Play();
-            Debug.Log("Jogo iniciado!");
         }
     }
 
-    // Chamar quando a nota for acertada
     public void NoteHit()
     {
         score++;
-        Debug.Log($"Nota acertada! Pontos: {score}");
+        Debug.Log($"Acertou! Pontos: {score}");
     }
 
-    // Chamar quando a nota for perdida
     public void NoteMissed()
     {
-        missed++;
-        Debug.Log($"Nota perdida! Total perdido: {missed}");
-    }
-
-    // Se quiser, métodos para pegar a pontuação atual, reiniciar, etc
-    public int GetScore()
-    {
-        return score;
-    }
-
-    public int GetMissed()
-    {
-        return missed;
+        misses++;
+        Debug.Log($"Errou! Erros: {misses}");
     }
 }

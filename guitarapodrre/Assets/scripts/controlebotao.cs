@@ -8,7 +8,7 @@ public class controlebotao : MonoBehaviour
     public KeyCode keyTopress;
 
     private bool podePressionar = false;
-    private Collider2D notaNaArea = null; // referência da nota que está no quadrado
+    private Collider2D notaNaArea = null; // referência da nota na área
 
     void Start()
     {
@@ -18,25 +18,23 @@ public class controlebotao : MonoBehaviour
 
     void Update()
     {
-        // Troca o sprite sempre que tecla for pressionada
+        // Sempre mostra a animação quando a tecla for pressionada (com ou sem nota)
         if (Input.GetKeyDown(keyTopress))
         {
             theSR.sprite = imagepressed;
 
-            // Se tiver nota na área, destrói ela e contabiliza o hit
+            // Se tem nota, acerta e destrói
             if (podePressionar && notaNaArea != null)
             {
                 Destroy(notaNaArea.gameObject);
-                gameManager.instance.NoteHit();
-
-                Debug.Log($"Nota acertada com a tecla {keyTopress}");
-
+                gameManager.instance.NoteHit(); // Conta o acerto
+                Debug.Log($"Nota acertada na lane {keyTopress}");
                 notaNaArea = null;
                 podePressionar = false;
             }
         }
 
-        // Quando soltar a tecla, volta para sprite padrão
+        // Volta para sprite padrão quando soltar a tecla
         if (Input.GetKeyUp(keyTopress))
         {
             theSR.sprite = defautImage;
@@ -56,15 +54,11 @@ public class controlebotao : MonoBehaviour
     {
         if (other.CompareTag("Note"))
         {
-            // Se a nota sair sem ser pressionada, contabiliza perda
             if (notaNaArea == other)
             {
                 notaNaArea = null;
                 podePressionar = false;
-
-                gameManager.instance.NoteMissed();
-
-                theSR.sprite = defautImage;
+                gameManager.instance.NoteMissed(); // Conta como erro
             }
         }
     }
