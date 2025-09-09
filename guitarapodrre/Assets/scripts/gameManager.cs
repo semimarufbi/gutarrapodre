@@ -15,14 +15,11 @@ public class gameManager : MonoBehaviour
         else Destroy(gameObject);
     }
 
-    void Update()
+    void Start()
     {
-        // Inicia a música
-        if (!startPlaying && Input.GetKeyDown(KeyCode.Space))
-        {
-            startPlaying = true;
-            theMusic.Play();
-        }
+        // Assim que a cena começa, já inicia o jogo
+        startPlaying = true;
+        theMusic.Play();
     }
 
     public void NoteHit()

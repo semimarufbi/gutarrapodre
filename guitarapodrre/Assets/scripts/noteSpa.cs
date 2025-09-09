@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class NoteSpawner : MonoBehaviour
 {
+
+    [SerializeField] 
     public TextAsset mapaJson;
     public GameObject[] laneSpawners;   // posição inicial da nota para cada lane
     public GameObject[] notePrefabs;    // prefab por lane
@@ -13,7 +15,18 @@ public class NoteSpawner : MonoBehaviour
 
     void Start()
     {
+        if (mapaJson == null)
+        {
+            Debug.LogError("Mapa JSON não foi atribuído no Inspector!");
+            return;
+        }
+
         mapa = JsonUtility.FromJson<NoteMap>(mapaJson.text);
+
+        if (mapa == null)
+        {
+            Debug.LogError("Falha ao carregar o mapa JSON!");
+        }
     }
 
     void Update()

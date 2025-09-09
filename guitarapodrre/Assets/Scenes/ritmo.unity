@@ -1592,58 +1592,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1132968316
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1132968319}
-  - component: {fileID: 1132968318}
-  m_Layer: 0
-  m_Name: testejson
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!114 &1132968318
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1132968316}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 635327a8d339ec240a8e66bdac41ccc9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mapaJson: {fileID: 4900000, guid: 955f57cd65520e440a5048007e2bd231, type: 3}
-  laneSpawners:
-  - {fileID: 756679148}
-  - {fileID: 939672102}
-  - {fileID: 319441984}
-  - {fileID: 1439456617}
-  notePrefab: {fileID: 708227931233258219, guid: 8b2a63c298bc9fa4db445e87e62835d7, type: 3}
-  musica: {fileID: 0}
---- !u!4 &1132968319
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1132968316}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.3239958, y: 4.7009096, z: -0.005562041}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1160336783
 GameObject:
   m_ObjectHideFlags: 0
@@ -3297,6 +3245,5 @@ SceneRoots:
   - {fileID: 1605572182}
   - {fileID: 1106723972}
   - {fileID: 10742509}
-  - {fileID: 1132968319}
   - {fileID: 528568708}
   - {fileID: 2055589849}
