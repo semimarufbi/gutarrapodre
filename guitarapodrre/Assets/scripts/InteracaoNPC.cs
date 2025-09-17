@@ -5,34 +5,31 @@ using UnityEngine.SceneManagement;
 
 public class InteracaoNPC : MonoBehaviour
 {
-    public GameObject painelTexto;
-    
-    private bool podeInteragir = false;
+    public Dialogo dialogo; // asset criado
+    private bool dentro = false;
 
     void Update()
     {
-        if (podeInteragir && Input.GetKeyDown(KeyCode.E))
+        if (dentro && Input.GetKeyDown(KeyCode.E))
         {
-            // Troca de cena
-            SceneManager.LoadScene("ritmo");
+            DialogoManager.Instance.IniciarDialogo(dialogo);
+        }
+
+        if (dentro && Input.GetKeyDown(KeyCode.Space))
+        {
+            DialogoManager.Instance.ProximaLinha();
         }
     }
 
-    void OnCollisionEnter2D(Collision2D collision)
+    void OnTriggerEnter2D(Collider2D other)
     {
-        if (collision.gameObject.CompareTag("gordo"))
-        {
-            painelTexto.SetActive(true);
-            podeInteragir = true;
-        }
+        if (other.CompareTag("Player"))
+            dentro = true;
     }
 
-    void OnCollisionExit2D(Collision2D collision)
+    void OnTriggerExit2D(Collider2D other)
     {
-        if (collision.gameObject.CompareTag("gordo"))
-        {
-            painelTexto.SetActive(false);
-            podeInteragir = false;
-        }
+        if (other.CompareTag("Player"))
+            dentro = false;
     }
 }
