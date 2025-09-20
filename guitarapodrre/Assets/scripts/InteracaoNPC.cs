@@ -1,7 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class InteracaoNPC : MonoBehaviour
 {
@@ -10,14 +7,14 @@ public class InteracaoNPC : MonoBehaviour
 
     void Update()
     {
-        if (dentro && Input.GetKeyDown(KeyCode.E))
+        // Só inicia diálogo quando estiver perto e não houver diálogo ativo
+        if ((dentro && Input.GetKeyDown(KeyCode.E)) || dentro && Input.GetKeyDown(KeyCode.JoystickButton2))
         {
-            DialogoManager.Instance.IniciarDialogo(dialogo);
-        }
-
-        if (dentro && Input.GetKeyDown(KeyCode.Space))
-        {
-            DialogoManager.Instance.ProximaLinha();
+            if (!DialogoManager.Instance.EmDialogo)
+            {
+                DialogoManager.Instance.IniciarDialogo(dialogo);
+            }
+            // não chamamos ProximaLinha() aqui — o DialogoManager já escuta E globalmente enquanto EmDialogo == true
         }
     }
 

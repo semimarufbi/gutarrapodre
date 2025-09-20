@@ -33,7 +33,6 @@ public class NoteSpawner : MonoBehaviour
     {
         if (mapa == null || !gameManager.instance.startPlaying) return;
 
-        // Pega o tempo atual da música direto do gameManager
         float tempoAtual = gameManager.instance.theMusic.time;
 
         while (proximaNotaIndex < mapa.notas.Length &&

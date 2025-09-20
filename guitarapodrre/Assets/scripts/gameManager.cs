@@ -1,11 +1,18 @@
 ﻿using UnityEngine;
+using TMPro;
 
 public class gameManager : MonoBehaviour
 {
     public static gameManager instance;
 
+    [Header("Áudio e gameplay")]
     public bool startPlaying = false;
     public AudioSource theMusic;
+
+    [Header("Score UI")]
+    public TextMeshProUGUI textoScore;
+    public TextMeshProUGUI textoErros;
+
     private int score = 0;
     private int misses = 0;
 
@@ -17,20 +24,31 @@ public class gameManager : MonoBehaviour
 
     void Start()
     {
-        // Assim que a cena começa, já inicia o jogo
         startPlaying = true;
-        theMusic.Play();
+        if (theMusic != null) theMusic.Play();
+        AtualizarUI();
     }
 
     public void NoteHit()
     {
-        score++;
-        Debug.Log($"Acertou! Pontos: {score}");
+        score += 100; // cada acerto vale 100 pontos
+        AtualizarUI();
+        Debug.Log("Acertou! Pontos: " + score);
     }
 
     public void NoteMissed()
     {
-        misses++;
-        Debug.Log($"Errou! Erros: {misses}");
+        misses += 1; // cada erro +1
+        AtualizarUI();
+        Debug.Log("Errou! Total de erros: " + misses);
+    }
+
+    private void AtualizarUI()
+    {
+        if (textoScore != null)
+            textoScore.text = $"Score: {score}";
+
+        if (textoErros != null)
+            textoErros.text = $"Erros: {misses}";
     }
 }

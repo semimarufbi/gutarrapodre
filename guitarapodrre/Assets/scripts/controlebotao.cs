@@ -1,14 +1,16 @@
 using UnityEngine;
 
-public class controlebotao : MonoBehaviour
+public class ControleBotao : MonoBehaviour
 {
     private SpriteRenderer theSR;
     public Sprite defautImage;
-    public Sprite imagepressed;
-    public KeyCode keyTopress;
+    public Sprite imagePressed;
+    public KeyCode keyToPress; // teclado
 
-    private bool podePressionar = false;
-    private Collider2D notaNaArea = null; // referência da nota na área
+    private NoteObject notaNaArea = null;
+
+    [Header("Gamepad")]
+    public bool usarGamepad = true;
 
     void Start()
     {
@@ -18,24 +20,50 @@ public class controlebotao : MonoBehaviour
 
     void Update()
     {
-        // Sempre mostra a animação quando a tecla for pressionada (com ou sem nota)
-        if (Input.GetKeyDown(keyTopress))
-        {
-            theSR.sprite = imagepressed;
+        bool pressionou = false;
 
-            // Se tem nota, acerta e destrói
-            if (podePressionar && notaNaArea != null)
+        // Teclado
+        if (Input.GetKeyDown(keyToPress))
+            pressionou = true;
+
+        // Gamepad
+        if (usarGamepad)
+        {
+            string lane = gameObject.name.ToLower();
+
+            // LT = Blue
+            if (lane.Contains("blue") && Input.GetAxis("LT") > 0.5f) pressionou = true;
+            
+
+            // LB = Red
+            if (lane.Contains("red") && Input.GetKeyDown(KeyCode.JoystickButton4))
+                pressionou = true;
+
+            // RB = Yellow
+            if (lane.Contains("yellow") && Input.GetKeyDown(KeyCode.JoystickButton5))
+                pressionou = true;
+
+            // RT = Green
+            if (lane.Contains("green") && Input.GetAxis("RT") > 0.5f) pressionou = true;
+            
+        }
+
+        // Se apertou
+        if (pressionou)
+        {
+            theSR.sprite = imagePressed;
+
+            if (notaNaArea != null)
             {
-                Destroy(notaNaArea.gameObject);
-                gameManager.instance.NoteHit(); // Conta o acerto
-                Debug.Log($"Nota acertada na lane {keyTopress}");
+                notaNaArea.Acertou(); // método do NoteObject para registrar acerto
                 notaNaArea = null;
-                podePressionar = false;
             }
         }
 
-        // Volta para sprite padrão quando soltar a tecla
-        if (Input.GetKeyUp(keyTopress))
+        // Soltou (teclado + bumpers)
+        if (Input.GetKeyUp(keyToPress) ||
+            (usarGamepad &&
+             (Input.GetKeyUp(KeyCode.JoystickButton4) || Input.GetKeyUp(KeyCode.JoystickButton5))))
         {
             theSR.sprite = defautImage;
         }
@@ -43,23 +71,19 @@ public class controlebotao : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Note"))
+        NoteObject nota = other.GetComponent<NoteObject>();
+        if (nota != null)
         {
-            podePressionar = true;
-            notaNaArea = other;
+            notaNaArea = nota;
         }
     }
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        if (other.CompareTag("Note"))
+        NoteObject nota = other.GetComponent<NoteObject>();
+        if (nota != null && nota == notaNaArea)
         {
-            if (notaNaArea == other)
-            {
-                notaNaArea = null;
-                podePressionar = false;
-                gameManager.instance.NoteMissed(); // Conta como erro
-            }
+            notaNaArea = null;
         }
     }
 }

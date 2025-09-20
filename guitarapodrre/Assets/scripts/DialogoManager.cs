@@ -1,16 +1,17 @@
-using UnityEngine;
+Ôªøusing UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class DialogoManager : MonoBehaviour
 {
     public static DialogoManager Instance;
 
-    [Header("Prefabs de bal„o por personagem")]
+    [Header("Prefabs de bal√£o por personagem")]
     public GameObject balaoPlayerPrefab;
     public GameObject balaoNPCPrefab;
 
-    [Header("Canvas Pai")]
-    public Transform canvasPai; // Canvas em Screen Space - Overlay
+    [Header("Canvas Pai (Screen Space - Overlay)")]
+    public Transform canvasPai;
 
     private GameObject balaoAtual;
     private TextMeshProUGUI textoUI;
@@ -18,33 +19,44 @@ public class DialogoManager : MonoBehaviour
     private Dialogo dialogoAtual;
     private int indice = 0;
 
+    public bool EmDialogo { get; private set; } = false;
+    private bool podeAvancar = false;
+
     void Awake()
     {
         if (Instance == null) Instance = this;
         else Destroy(gameObject);
+
+        if (canvasPai == null)
+            Debug.LogWarning("[DialogoManager] canvasPai n√£o est√° configurado no Inspector.");
     }
 
-    /// <summary>
-    /// Inicia o di·logo.
-    /// </summary>
+    void Update()
+    {
+        if (EmDialogo && podeAvancar && (Input.GetKeyDown(KeyCode.E) || Input.GetKeyDown(KeyCode.JoystickButton2)))
+        {
+            ProximaLinha();
+        }
+    }
+
     public void IniciarDialogo(Dialogo dialogo)
     {
-        if (dialogo == null) return;
+        if (dialogo == null || dialogo.falas == null || dialogo.falas.Length == 0) return;
 
         dialogoAtual = dialogo;
         indice = 0;
+        EmDialogo = true;
 
         CriarOuTrocarBalao();
-
         MostrarLinha();
+
+        podeAvancar = false;
+        Invoke(nameof(LiberarAvanco), 0.12f);
     }
 
-    /// <summary>
-    /// AvanÁa para a prÛxima linha.
-    /// </summary>
     public void ProximaLinha()
     {
-        if (dialogoAtual == null) return;
+        if (!EmDialogo || dialogoAtual == null) return;
 
         indice++;
 
@@ -52,6 +64,9 @@ public class DialogoManager : MonoBehaviour
         {
             CriarOuTrocarBalao();
             MostrarLinha();
+
+            podeAvancar = false;
+            Invoke(nameof(LiberarAvanco), 0.08f);
         }
         else
         {
@@ -59,50 +74,56 @@ public class DialogoManager : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// Mostra o texto da linha atual.
-    /// </summary>
     private void MostrarLinha()
     {
-        if (textoUI != null && dialogoAtual != null)
-        {
-            textoUI.text = $"{dialogoAtual.falas[indice].nome}: {dialogoAtual.falas[indice].texto}";
-        }
+        if (textoUI == null || dialogoAtual == null || dialogoAtual.falas == null) return;
+        if (indice < 0 || indice >= dialogoAtual.falas.Length) return;
+
+        textoUI.text = $"{dialogoAtual.falas[indice].nome}: {dialogoAtual.falas[indice].texto}";
     }
 
-    /// <summary>
-    /// Cria um novo bal„o ou troca se o personagem mudar.
-    /// </summary>
     private void CriarOuTrocarBalao()
     {
+        if (dialogoAtual == null || dialogoAtual.falas == null || dialogoAtual.falas.Length == 0) return;
+
         string nomeFalando = dialogoAtual.falas[indice].nome;
+        GameObject prefabEscolhido = (nomeFalando == "Player") ? balaoPlayerPrefab : balaoNPCPrefab;
 
-        GameObject prefabEscolhido = nomeFalando == "Player" ? balaoPlayerPrefab : balaoNPCPrefab;
-
-        // Se n„o existe bal„o ou mudou de personagem, cria novo
-        if (balaoAtual == null || balaoAtual.name != prefabEscolhido.name + "(Clone)")
+        if (prefabEscolhido == null)
         {
-            if (balaoAtual != null) Destroy(balaoAtual);
-
-            balaoAtual = Instantiate(prefabEscolhido, canvasPai);
-            textoUI = balaoAtual.GetComponentInChildren<TextMeshProUGUI>();
-
-            if (textoUI == null)
-                Debug.LogError("Texto TextMeshProUGUI n„o encontrado no prefab do bal„o!");
+            Debug.LogError($"[DialogoManager] prefab do bal√£o n√£o configurado para '{nomeFalando}'.");
+            return;
         }
+
+        if (balaoAtual != null) Destroy(balaoAtual);
+
+        balaoAtual = canvasPai != null
+            ? Instantiate(prefabEscolhido, canvasPai)
+            : Instantiate(prefabEscolhido);
+
+        textoUI = balaoAtual.GetComponentInChildren<TextMeshProUGUI>();
+        if (textoUI == null)
+            Debug.LogError("[DialogoManager] TextMeshProUGUI n√£o encontrado dentro do prefab do bal√£o.");
     }
 
-    /// <summary>
-    /// Encerra o di·logo e destrÛi o bal„o.
-    /// </summary>
     private void EncerrarDialogo()
     {
-        if (balaoAtual != null)
-        {
-            Destroy(balaoAtual);
-        }
+        if (balaoAtual != null) Destroy(balaoAtual);
 
         dialogoAtual = null;
         indice = 0;
+        EmDialogo = false;
+
+        // Troca de cena autom√°tica: pega a cena atual e carrega a pr√≥xima da Build Settings
+        int cenaAtualIndex = SceneManager.GetActiveScene().buildIndex;
+        int totalCenas = SceneManager.sceneCountInBuildSettings;
+
+        int proximaCenaIndex = (cenaAtualIndex + 1) % totalCenas; // loop caso seja a √∫ltima
+        SceneManager.LoadScene(proximaCenaIndex);
+    }
+
+    private void LiberarAvanco()
+    {
+        podeAvancar = true;
     }
 }

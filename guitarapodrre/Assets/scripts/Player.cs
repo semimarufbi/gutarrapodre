@@ -41,7 +41,7 @@ public class Player : MonoBehaviour
         }
 
         // Lógica de pulo e pulo duplo
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.JoystickButton0))
         {
             if (isGrounded)
             {
