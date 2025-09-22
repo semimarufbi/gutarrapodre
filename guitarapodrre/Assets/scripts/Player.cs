@@ -1,85 +1,118 @@
-using System.Collections;
-using System.Collections.Generic;
+Ôªøusing System.Collections;
 using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    private float inputHorizontal;
-    private Rigidbody2D rb;
-
-    [SerializeField] private int velocidade = 5;
+    [Header("Movimento")]
+    [SerializeField] private float velocidade = 5f;
+    [SerializeField] private float velocidadeCorrendo = 8f;
     [SerializeField] private Animator animacao;
 
+    [Header("Pulo")]
     private bool isGrounded;
-    private bool canDoubleJump;
-
-    [SerializeField] private float jumpForce = 300f;
+    private bool podeDuploPulo;
+    [SerializeField] private float jumpForce = 12f;
     [SerializeField] private Transform groundCheck;
     [SerializeField] private float groundCheckRadius = 0.2f;
     [SerializeField] private LayerMask groundLayer;
 
+    [Header("Corrida")]
+    private bool correndo;
+
+    [Header("Rolamento")]
+    private bool rolando = false;
+    [SerializeField] private float duracaoRolamento = 0.5f;
+    [SerializeField] private Vector2 tamanhoColliderRolamento = new Vector2(1f, 0.5f);
+    private Vector2 tamanhoColliderOriginal;
+    private CapsuleCollider2D capsuleCollider2D;
+
+    private float inputHorizontal;
+    private Rigidbody2D rb;
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+        capsuleCollider2D = GetComponent<CapsuleCollider2D>();
+        tamanhoColliderOriginal = capsuleCollider2D.size;
+
+        if (rb.gravityScale < 3f)
+            rb.gravityScale = 5f;
     }
 
     private void Update()
     {
-        // Captura o input horizontal
         inputHorizontal = Input.GetAxis("Horizontal");
 
-        // Flip visual do personagem
+        // Flip do personagem
         spriteFlip(inputHorizontal);
 
-        // Verifica se est· no ch„o
-        isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
+        // Corrida
+        correndo = Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.JoystickButton4);
 
-        // Permite pulo duplo ao tocar o ch„o
+        // Atualiza Animator sempre
+        animacao.SetFloat("Velocidade", Mathf.Abs(inputHorizontal));
+        animacao.SetBool("NoChao", isGrounded);
+        animacao.SetBool("Correndo", correndo);
+
+        // Rolamento
+        if ((Input.GetKeyDown(KeyCode.LeftControl) || Input.GetKeyDown(KeyCode.JoystickButton1)) && isGrounded && !rolando)
+        {
+            StartCoroutine(Rolamento());
+        }
+
+        if (!rolando)
+        {
+            // Checa ch√£o
+            bool groundedAnterior = isGrounded;
+            isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
+
+            // Reseta duplo pulo
+            if (isGrounded && !groundedAnterior)
+                podeDuploPulo = true;
+
+            // Pulo
+            if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.JoystickButton0))
+            {
+                if (isGrounded || podeDuploPulo)
+                {
+                    rb.velocity = new Vector2(rb.velocity.x, 0f);
+                    rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+                    animacao.SetTrigger("Pulo");
+
+                    if (!isGrounded)
+                        podeDuploPulo = false;
+                }
+            }
+        }
+
+        // Anima√ß√µes no ch√£o
         if (isGrounded)
         {
-            canDoubleJump = true;
-        }
-
-        // LÛgica de pulo e pulo duplo
-        if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.JoystickButton0))
-        {
-            if (isGrounded)
+            if (Mathf.Abs(inputHorizontal) > 0.01f)
             {
-                rb.velocity = new Vector2(rb.velocity.x, 0);
-                rb.AddForce(Vector2.up * jumpForce);
-                animacao.SetTrigger("espaÁo");
+                animacao.SetBool("parado", false);
+                animacao.SetBool("andando", !correndo);
+                animacao.SetBool("Correndo", correndo);
             }
-            else if (canDoubleJump)
+            else
             {
-                rb.velocity = new Vector2(rb.velocity.x, 0);
-                rb.AddForce(Vector2.up * jumpForce);
-                animacao.SetTrigger("espaÁo");
-                canDoubleJump = false;
+                animacao.SetBool("parado", true);
+                animacao.SetBool("andando", false);
+                animacao.SetBool("Correndo", false);
             }
-        }
-
-        // LÛgica das animaÁıes de movimento
-        if (!isGrounded)
-        {
-            animacao.SetBool("parado", false); // Desativa idle no ar
-            animacao.SetBool("andando", false); // Desativa andar no ar
-        }
-        else if (Mathf.Abs(inputHorizontal) > 0.01f)
-        {
-            animacao.SetBool("parado", false); // Desativa idle ao andar
-            animacao.SetBool("andando", true); // Ativa andar
         }
         else
         {
-            animacao.SetBool("andando", false); // Desativa andar
-            animacao.SetBool("parado", true); // Ativa idle
+            animacao.SetBool("parado", false);
+            animacao.SetBool("andando", false);
         }
     }
 
     private void FixedUpdate()
     {
-        // Aplica movimento horizontal
-        rb.velocity = new Vector2(inputHorizontal * velocidade, rb.velocity.y);
+        float velocidadeAtual = correndo ? velocidadeCorrendo : velocidade;
+        if (!rolando)
+            rb.velocity = new Vector2(inputHorizontal * velocidadeAtual, rb.velocity.y);
     }
 
     private void spriteFlip(float horizontal)
@@ -88,5 +121,27 @@ public class Player : MonoBehaviour
             transform.localScale = new Vector3(-1, 1, 1);
         else if (horizontal > 0)
             transform.localScale = new Vector3(1, 1, 1);
+    }
+
+    private IEnumerator Rolamento()
+    {
+        rolando = true;
+        animacao.SetTrigger("Rolamento");
+
+        // Ajusta collider
+        capsuleCollider2D.size = tamanhoColliderRolamento;
+
+        // Move rapidamente na dire√ß√£o atual
+        float dir = transform.localScale.x;
+        rb.velocity = new Vector2(dir * velocidadeCorrendo * 1.5f, rb.velocity.y);
+
+        yield return new WaitForSeconds(duracaoRolamento);
+
+        // Restaura collider
+       capsuleCollider2D.size = tamanhoColliderOriginal;
+
+        // Garante que o rolamento terminou e o Animator n√£o trava
+        rolando = false;
+        animacao.ResetTrigger("Rolamento"); // opcional, s√≥ para garantir
     }
 }
