@@ -9,7 +9,7 @@ public class Player : MonoBehaviour
     [SerializeField] private Animator animacao;
 
     [Header("Pulo")]
-    private bool isGrounded;
+    public bool isGrounded;
     private bool podeDuploPulo;
     [SerializeField] private float jumpForce = 12f;
     [SerializeField] private Transform groundCheck;
@@ -71,7 +71,7 @@ public class Player : MonoBehaviour
                 podeDuploPulo = true;
 
             // Pulo
-            if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.JoystickButton0))
+            if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.JoystickButton0) && isGrounded)
             {
                 if (isGrounded || podeDuploPulo)
                 {

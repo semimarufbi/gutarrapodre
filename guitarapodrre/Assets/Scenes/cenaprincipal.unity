@@ -321,8 +321,9 @@ MonoBehaviour:
   velocidade: 5
   velocidadeCorrendo: 8
   animacao: {fileID: 427829426}
+  isGrounded: 0
   jumpForce: 20
-  groundCheck: {fileID: 1349539905}
+  groundCheck: {fileID: 1952568737}
   groundCheckRadius: 0.2
   groundLayer:
     serializedVersion: 2
@@ -1361,7 +1362,7 @@ Transform:
   m_GameObject: {fileID: 1952568736}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.268, y: -0.014, z: 0}
+  m_LocalPosition: {x: -0.268, y: 0.124, z: 0}
   m_LocalScale: {x: 1.0088, y: 1.0088, z: 1.0088}
   m_ConstrainProportionsScale: 0
   m_Children: []

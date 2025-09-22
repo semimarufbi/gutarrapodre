@@ -152,7 +152,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2b1097353a29bd42a3c0aa0283b54e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mapaJson: {fileID: 4900000, guid: a5c0a7afe7a0ca14d9e235168ad2a828, type: 3}
+  mapaJson: {fileID: 4900000, guid: b3b3ace18ef65a44e8d6bfa65907f3ae, type: 3}
   laneSpawners:
   - {fileID: 756679148}
   - {fileID: 939672102}
@@ -1370,10 +1370,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1605572182}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -627, y: -505}
-  m_SizeDelta: {x: 200, y: 50}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0.344, y: 0.19900002}
+  m_AnchoredPosition: {x: -1, y: 1.2900391}
+  m_SizeDelta: {x: -460, y: -119}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1599940220
 MonoBehaviour:
@@ -2256,7 +2256,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 22f5d7d56d2aedc43a95741950f78a4e, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 31a8b143143ab6644881e05ee9f31cf7, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -2389,10 +2389,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1605572182}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 628, y: -512}
-  m_SizeDelta: {x: 200, y: 50}
+  m_AnchorMin: {x: 0.65500003, y: 0}
+  m_AnchorMax: {x: 1, y: 0.19900002}
+  m_AnchoredPosition: {x: -5, y: 0}
+  m_SizeDelta: {x: -461, y: -118}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2094741724
 MonoBehaviour:
