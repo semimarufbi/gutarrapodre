@@ -203,6 +203,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogo: {fileID: 11400000, guid: 34a8f369b2751444f96962efe08b2aaa, type: 2}
+--- !u!210 &63105430
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 63105419}
+  m_Enabled: 1
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 100
+  m_SortAtRoot: 0
 --- !u!1 &154762434
 GameObject:
   m_ObjectHideFlags: 0
@@ -1336,6 +1348,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 128850, guid: b6ed95875921a1f4f9c6f17b9f812b11, type: 3}
       insertIndex: -1
       addedObject: {fileID: 63105427}
+    - targetCorrespondingSourceObject: {fileID: 128850, guid: b6ed95875921a1f4f9c6f17b9f812b11, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 63105430}
   m_SourcePrefab: {fileID: 100100000, guid: b6ed95875921a1f4f9c6f17b9f812b11, type: 3}
 --- !u!1 &1952568736
 GameObject:
