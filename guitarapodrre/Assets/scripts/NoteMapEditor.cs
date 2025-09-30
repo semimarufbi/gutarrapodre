@@ -10,6 +10,7 @@ public class NoteMapEditor : EditorWindow
     {
         public float time;
         public int line;
+        public bool especial; // NOVO: marca nota especial
     }
 
     [System.Serializable]
@@ -31,8 +32,12 @@ public class NoteMapEditor : EditorWindow
 
     private KeyCode[] laneKeys = new KeyCode[4] { KeyCode.D, KeyCode.F, KeyCode.J, KeyCode.K };
 
-    // Variável para controlar a posição do scroll
     private Vector2 scrollPos;
+
+    // Controle do modo especial
+    private bool modoEspecialAtivo = false;
+    private int notasEspeciaisContadas = 0;
+    private int limiteNotasEspeciais = 10;
 
     [MenuItem("Tools/Note Map Editor")]
     public static void ShowWindow()
@@ -153,6 +158,12 @@ public class NoteMapEditor : EditorWindow
 
         GUILayout.Space(20);
 
+        // Status do modo especial
+        if (modoEspecialAtivo)
+        {
+            EditorGUILayout.HelpBox($"[MODO ESPECIAL ATIVO] - Notas restantes: {limiteNotasEspeciais - notasEspeciaisContadas}", MessageType.Info);
+        }
+
         GUILayout.Label("Notas atuais:", EditorStyles.boldLabel);
         if (mapa.notas.Count == 0)
         {
@@ -163,7 +174,8 @@ public class NoteMapEditor : EditorWindow
             for (int i = 0; i < mapa.notas.Count; i++)
             {
                 GUILayout.BeginHorizontal();
-                GUILayout.Label($"[{i}] Tempo: {mapa.notas[i].time:F2}s | Linha: {mapa.notas[i].line} (Tecla: {laneKeys[mapa.notas[i].line]})");
+                string especialTag = mapa.notas[i].especial ? " [especial]" : "";
+                GUILayout.Label($"[{i}] Tempo: {mapa.notas[i].time:F2}s | Linha: {mapa.notas[i].line} (Tecla: {laneKeys[mapa.notas[i].line]}){especialTag}");
                 if (GUILayout.Button("Remover"))
                 {
                     mapa.notas.RemoveAt(i);
@@ -186,13 +198,23 @@ public class NoteMapEditor : EditorWindow
         Event e = Event.current;
         if (e != null && e.type == EventType.KeyDown)
         {
-            for (int i = 0; i < laneKeys.Length; i++)
+            if (e.keyCode == KeyCode.Space) // Ativa modo especial
             {
-                if (e.keyCode == laneKeys[i])
+                modoEspecialAtivo = true;
+                notasEspeciaisContadas = 0;
+                Debug.Log("Modo especial ativado! As próximas 10 notas serão especiais.");
+                e.Use();
+            }
+            else
+            {
+                for (int i = 0; i < laneKeys.Length; i++)
                 {
-                    AdicionarNota(playTime, i);
-                    e.Use();
-                    break;
+                    if (e.keyCode == laneKeys[i])
+                    {
+                        AdicionarNota(playTime, i);
+                        e.Use();
+                        break;
+                    }
                 }
             }
         }
@@ -202,9 +224,23 @@ public class NoteMapEditor : EditorWindow
 
     void AdicionarNota(float time, int line)
     {
-        mapa.notas.Add(new Note { time = time, line = line });
+        Note nova = new Note { time = time, line = line };
+
+        if (modoEspecialAtivo)
+        {
+            nova.especial = true;
+            notasEspeciaisContadas++;
+
+            if (notasEspeciaisContadas >= limiteNotasEspeciais)
+            {
+                modoEspecialAtivo = false;
+                Debug.Log("Modo especial desativado após 10 notas.");
+            }
+        }
+
+        mapa.notas.Add(nova);
         mapa.notas.Sort((a, b) => a.time.CompareTo(b.time));
-        Debug.Log($"Nota adicionada: lane {line}, tempo {time:F2}s");
+        Debug.Log($"Nota adicionada: lane {line}, tempo {time:F2}s, especial: {nova.especial}");
         Repaint();
     }
 

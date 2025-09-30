@@ -1,0 +1,80 @@
+{
+    "notas": [
+        {
+            "time": 2.623991012573242,
+            "line": 0,
+            "isSpecial": false
+        },
+        {
+            "time": 2.901315212249756,
+            "line": 0,
+            "isSpecial": false
+        },
+        {
+            "time": 3.2213151454925539,
+            "line": 1,
+            "isSpecial": false
+        },
+        {
+            "time": 3.3706576824188234,
+            "line": 2,
+            "isSpecial": false
+        },
+        {
+            "time": 3.690657615661621,
+            "line": 3,
+            "isSpecial": false
+        },
+        {
+            "time": 4.565328598022461,
+            "line": 0,
+            "isSpecial": true
+        },
+        {
+            "time": 4.821315288543701,
+            "line": 0,
+            "isSpecial": true
+        },
+        {
+            "time": 5.09866189956665,
+            "line": 0,
+            "isSpecial": true
+        },
+        {
+            "time": 5.333310604095459,
+            "line": 0,
+            "isSpecial": true
+        },
+        {
+            "time": 5.589319705963135,
+            "line": 0,
+            "isSpecial": true
+        },
+        {
+            "time": 5.8453288078308109,
+            "line": 0,
+            "isSpecial": true
+        },
+        {
+            "time": 6.122653007507324,
+            "line": 0,
+            "isSpecial": true
+        },
+        {
+            "time": 6.378662109375,
+            "line": 0,
+            "isSpecial": true
+        },
+        {
+            "time": 6.655986309051514,
+            "line": 0,
+            "isSpecial": true
+        },
+        {
+            "time": 6.933310508728027,
+            "line": 0,
+            "isSpecial": true
+        }
+    ],
+    "bpm": 120.0
+}

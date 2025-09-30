@@ -1,0 +1,105 @@
+{
+    "notas": [
+        {
+            "time": 8.72532844543457,
+            "line": 0,
+            "especial": true
+        },
+        {
+            "time": 8.874648094177246,
+            "line": 0,
+            "especial": true
+        },
+        {
+            "time": 9.002653121948243,
+            "line": 0,
+            "especial": true
+        },
+        {
+            "time": 9.173310279846192,
+            "line": 0,
+            "especial": true
+        },
+        {
+            "time": 9.322652816772461,
+            "line": 0,
+            "especial": true
+        },
+        {
+            "time": 9.47199535369873,
+            "line": 0,
+            "especial": true
+        },
+        {
+            "time": 9.621315002441407,
+            "line": 0,
+            "especial": true
+        },
+        {
+            "time": 9.813310623168946,
+            "line": 0,
+            "especial": true
+        },
+        {
+            "time": 9.919977188110352,
+            "line": 0,
+            "especial": true
+        },
+        {
+            "time": 10.090657234191895,
+            "line": 0,
+            "especial": true
+        },
+        {
+            "time": 13.205328941345215,
+            "line": 0,
+            "especial": false
+        },
+        {
+            "time": 13.35464859008789,
+            "line": 1,
+            "especial": false
+        },
+        {
+            "time": 13.48265266418457,
+            "line": 1,
+            "especial": false
+        },
+        {
+            "time": 13.6959867477417,
+            "line": 0,
+            "especial": false
+        },
+        {
+            "time": 13.823990821838379,
+            "line": 1,
+            "especial": false
+        },
+        {
+            "time": 14.10131549835205,
+            "line": 0,
+            "especial": false
+        },
+        {
+            "time": 14.25065803527832,
+            "line": 0,
+            "especial": false
+        },
+        {
+            "time": 14.378662109375,
+            "line": 1,
+            "especial": false
+        },
+        {
+            "time": 14.506644248962403,
+            "line": 0,
+            "especial": false
+        },
+        {
+            "time": 14.527981758117676,
+            "line": 1,
+            "especial": false
+        }
+    ],
+    "bpm": 120.0
+}
