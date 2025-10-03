@@ -152,7 +152,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2b1097353a29bd42a3c0aa0283b54e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mapaJson: {fileID: 4900000, guid: f88255649deba644294988b0ac03401a, type: 3}
+  mapaJson: {fileID: 4900000, guid: 33546a2a101bf5240ba3a799f6c4eb3f, type: 3}
   laneSpawners:
   - {fileID: 756679148}
   - {fileID: 939672102}
@@ -7671,6 +7671,37 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2094741722}
   m_CullTransparentMesh: 1
+--- !u!1 &2111753753
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2111753754}
+  m_Layer: 0
+  m_Name: AudioPreview
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2111753754
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2111753753}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2125296780
 GameObject:
   m_ObjectHideFlags: 0
@@ -7771,3 +7802,4 @@ SceneRoots:
   - {fileID: 1752139649}
   - {fileID: 393868538}
   - {fileID: 730278787}
+  - {fileID: 2111753754}
