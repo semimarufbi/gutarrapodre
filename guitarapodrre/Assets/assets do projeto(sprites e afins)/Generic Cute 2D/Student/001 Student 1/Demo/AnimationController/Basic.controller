@@ -86,7 +86,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: knockback
-  m_Speed: 1
+  m_Speed: 5
   m_CycleOffset: 0
   m_Transitions: []
   m_StateMachineBehaviours: []
@@ -190,7 +190,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: crouch down
-  m_Speed: 1
+  m_Speed: 5
   m_CycleOffset: 0
   m_Transitions: []
   m_StateMachineBehaviours: []
@@ -300,70 +300,70 @@ AnimatorStateMachine:
     m_Position: {x: 275.82922, y: 164.42853, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -556827062443460275}
-    m_Position: {x: 280, y: 220, z: 0}
+    m_Position: {x: 770, y: 680, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -8016232362433078166}
-    m_Position: {x: 290, y: 230, z: 0}
+    m_Position: {x: 800, y: 210, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1929888973883233960}
-    m_Position: {x: 300, y: 240, z: 0}
+    m_Position: {x: 770, y: 90, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -5000771011459654305}
-    m_Position: {x: 310, y: 250, z: 0}
+    m_Position: {x: 910, y: 270, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -2300124548578818971}
-    m_Position: {x: 320, y: 260, z: 0}
+    m_Position: {x: 500, y: 160, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -6903743220648872671}
-    m_Position: {x: 330, y: 270, z: 0}
+    m_Position: {x: 490, y: 310, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -3697555277592165222}
-    m_Position: {x: 340, y: 280, z: 0}
+    m_Position: {x: 260, y: 560, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -7125035827978822787}
-    m_Position: {x: 350, y: 290, z: 0}
+    m_Position: {x: 760, y: 440, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 2274347663597202377}
-    m_Position: {x: 360, y: 300, z: 0}
+    m_Position: {x: 730, y: 320, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -3723591941522310807}
-    m_Position: {x: 370, y: 310, z: 0}
+    m_Position: {x: 490, y: 270, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -3989827900336053086}
-    m_Position: {x: 380, y: 320, z: 0}
+    m_Position: {x: 770, y: 570, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -3240109738066005504}
-    m_Position: {x: 390, y: 330, z: 0}
+    m_Position: {x: 770, y: 620, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 4407733835241071091}
-    m_Position: {x: 400, y: 340, z: 0}
+    m_Position: {x: 760, y: 740, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 6763782712333217407}
-    m_Position: {x: 410, y: 350, z: 0}
+    m_Position: {x: 770, y: 510, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 3035499989459515252}
-    m_Position: {x: 420, y: 360, z: 0}
+    m_Position: {x: 990, y: 480, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 8475905694548492016}
-    m_Position: {x: 430, y: 370, z: 0}
+    m_Position: {x: 390, y: 390, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 4164361068241279183}
-    m_Position: {x: 440, y: 380, z: 0}
+    m_Position: {x: 540, y: 570, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 2688217264381709929}
-    m_Position: {x: 450, y: 390, z: 0}
+    m_Position: {x: 500, y: 230, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -3344688224473703101}
-    m_Position: {x: 460, y: 400, z: 0}
+    m_Position: {x: 540, y: 510, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 7258550601763295257}
-    m_Position: {x: 470, y: 410, z: 0}
+    m_Position: {x: 540, y: 620, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -5806586439059666452}
-    m_Position: {x: 480, y: 420, z: 0}
+    m_Position: {x: 550, y: 690, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -2125484832913310796}
-    m_Position: {x: 490, y: 430, z: 0}
+    m_Position: {x: 280, y: 730, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -1102642434165311151}
     m_Position: {x: 500, y: 440, z: 0}
@@ -385,7 +385,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: hit light
-  m_Speed: 1
+  m_Speed: 5
   m_CycleOffset: 0
   m_Transitions: []
   m_StateMachineBehaviours: []
@@ -489,7 +489,19 @@ AnimatorController:
   m_PrefabAsset: {fileID: 0}
   m_Name: Basic
   serializedVersion: 5
-  m_AnimatorParameters: []
+  m_AnimatorParameters:
+  - m_Name: animIndex
+    m_Type: 3
+    m_DefaultFloat: 0
+    m_DefaultInt: 0
+    m_DefaultBool: 0
+    m_Controller: {fileID: 0}
+  - m_Name: Play
+    m_Type: 9
+    m_DefaultFloat: 0
+    m_DefaultInt: 0
+    m_DefaultBool: 0
+    m_Controller: {fileID: 0}
   m_AnimatorLayers:
   - serializedVersion: 5
     m_Name: Base Layer
@@ -563,7 +575,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: jump up
-  m_Speed: 1
+  m_Speed: 5
   m_CycleOffset: 0
   m_Transitions: []
   m_StateMachineBehaviours: []

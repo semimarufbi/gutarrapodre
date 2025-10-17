@@ -4,7 +4,7 @@
 public class NoteObject : MonoBehaviour
 {
     [Header("Configurações")]
-    public float speed = 5f;
+    public float speed = 10f;
     public float limiteY = -5f;
 
     [Header("Aparência")]

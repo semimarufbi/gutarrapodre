@@ -1,4 +1,4 @@
-using System.Collections;
+Ôªøusing System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -6,23 +6,23 @@ public class SuperManager : MonoBehaviour
 {
     public static SuperManager Instance;
 
-    [Header("ReferÍncias")]
+    [Header("Refer√™ncias")]
     [SerializeField] public ParticleSystem superParticles;
     [SerializeField] public Image uiFill;           // Image Type = Filled (configurar no Inspector)
     [SerializeField] public NoteSpawner noteSpawner; // opcional, se quiser spawnar notas especiais
-    [Header("Config")]
+
+    [Header("Configura√ß√µes")]
     [SerializeField] public int maxCharge = 10;
     [SerializeField] public KeyCode activationKey = KeyCode.Space; // tecla que ativa o super
     [SerializeField] public int scoreMultiplierOnSuper = 2;
-    [SerializeField] public float superDuration = 5f; 
+    [SerializeField] public float superDuration = 5f;
 
-
-  public  int currentCharge = 0;
+    public int currentCharge = 0;
     public bool isSuperActive = false;
 
     private void Awake()
     {
-        if (Instance == null) { Instance = this; /*DontDestroyOnLoad(gameObject);*/ }
+        if (Instance == null) { Instance = this; }
         else { Destroy(gameObject); }
     }
 
@@ -34,39 +34,35 @@ public class SuperManager : MonoBehaviour
 
     private void Update()
     {
-        // AtivaÁ„o por tecla (configur·vel pelo inspector)
+        // Ativa√ß√£o por tecla (configur√°vel pelo inspector)
         if (!isSuperActive && currentCharge >= maxCharge && Input.GetKeyDown(activationKey))
         {
             TryActivateSuper();
         }
     }
 
-    /// <summary>
-    /// Adiciona carga ao super (chame AddCharge(1) ao acertar uma nota especial).
-    /// N„o ativa automaticamente quando cheio ó apenas enche a barra.
-    /// </summary>
+    // Adiciona carga ao super (chame AddCharge(1) ao acertar nota especial)
     public void AddCharge(int amount)
     {
         if (isSuperActive) return;
 
         currentCharge = Mathf.Clamp(currentCharge + Mathf.Max(0, amount), 0, maxCharge);
         UpdateUI();
+
         if (currentCharge >= maxCharge)
         {
             Debug.Log("[SuperManager] Barra cheia! Pressione " + activationKey + " para ativar.");
-            // opcional: acionar algum efeito visual para indicar que est· pronto
+            StartCoroutine(PulseBar()); // anima√ß√£o de pulso quando enche
         }
     }
 
-    /// <summary>
-    /// Tenta ativar o super (pode ser chamado por bot„o UI).
-    /// </summary>
+    // Tenta ativar o super
     public void TryActivateSuper()
     {
         if (isSuperActive) return;
         if (currentCharge < maxCharge)
         {
-            Debug.Log("[SuperManager] Barra n„o cheia ainda.");
+            Debug.Log("[SuperManager] Barra n√£o cheia ainda.");
             return;
         }
 
@@ -80,18 +76,14 @@ public class SuperManager : MonoBehaviour
         UpdateUI();
 
         Debug.Log("[SuperManager] Super ativado!");
+        StartCoroutine(FlashBar()); // flash visual ao ativar
 
         if (superParticles != null) superParticles.Play();
 
-        // Aplica multiplicador no gameManager (se existir)
         if (gameManager.instance != null)
         {
-            // Presume que gameManager tem SetMultiplier(int mult, float duration)
             gameManager.instance.SetMultiplier(scoreMultiplierOnSuper, superDuration);
         }
-
-        // opcional: se quiser spawnar notas especiais enquanto o super estiver ativo,
-        // chame algo como: noteSpawner.MarkNextNotesAsSuper(...)
 
         StartCoroutine(EndSuperAfter(superDuration));
     }
@@ -105,15 +97,50 @@ public class SuperManager : MonoBehaviour
         Debug.Log("[SuperManager] Super finalizado.");
     }
 
+    // Atualiza a UI e aplica o gradiente din√¢mico
     private void UpdateUI()
     {
         if (uiFill != null)
         {
-            uiFill.fillAmount = (float)currentCharge / (float)maxCharge;
+            float t = (float)currentCharge / (float)maxCharge;
+            uiFill.fillAmount = t;
+
+            // Gradiente azul ‚Üí roxo ‚Üí rosa
+            Color startColor = new Color(0f, 0.8f, 1f); // azul neon
+            Color midColor = new Color(0.6f, 0f, 1f);   // roxo
+            Color endColor = new Color(1f, 0f, 1f);     // rosa forte
+
+            if (t < 0.5f)
+                uiFill.color = Color.Lerp(startColor, midColor, t * 2f);
+            else
+                uiFill.color = Color.Lerp(midColor, endColor, (t - 0.5f) * 2f);
         }
     }
 
-    // API utilit·ria (por exemplo, para UI button)
+    // Pulso visual quando a barra enche
+    private IEnumerator PulseBar()
+    {
+        float time = 0f;
+        while (time < 0.5f)
+        {
+            time += Time.deltaTime;
+            float scale = 1f + Mathf.Sin(time * 20f) * 0.1f;
+            uiFill.transform.localScale = new Vector3(scale, scale, 1f);
+            yield return null;
+        }
+        uiFill.transform.localScale = Vector3.one;
+    }
+
+    // Flash branco r√°pido quando o super √© ativado
+    private IEnumerator FlashBar()
+    {
+        Color original = uiFill.color;
+        uiFill.color = Color.white;
+        yield return new WaitForSeconds(0.1f);
+        uiFill.color = original;
+    }
+
+    // Getters utilit√°rios
     public bool IsSuperReady() => currentCharge >= maxCharge;
     public bool IsSuperActive() => isSuperActive;
     public int GetCurrentCharge() => currentCharge;

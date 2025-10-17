@@ -101,6 +101,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 5
   limiteY: -5
+  corNormal: {r: 1, g: 1, b: 1, a: 1}
+  corEspecial: {r: 1, g: 0.84, b: 0, a: 1}
+  efeitoEspecial: {fileID: 0}
+  hitEffect: {fileID: 0}
+  somAcerto: {fileID: 0}
+  somErro: {fileID: 0}
   jaAcertada: 0
 --- !u!114 &-4933686334916338703
 MonoBehaviour:

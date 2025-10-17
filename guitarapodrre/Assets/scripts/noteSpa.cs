@@ -7,7 +7,7 @@ public class NoteSpawner : MonoBehaviour
     public GameObject[] laneSpawners;   // Posição inicial da nota para cada lane
     public GameObject[] notePrefabs;    // Prefab por lane
 
-    public float leadTime = 1f; // Segundos antes do tempo da nota para spawnar
+    public float leadTime = 0.2f; // Segundos antes do tempo da nota para spawnar
 
     private NoteMap mapa;
     private int proximaNotaIndex = 0;
