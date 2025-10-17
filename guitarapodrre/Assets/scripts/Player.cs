@@ -6,7 +6,7 @@ public class Player : MonoBehaviour
     [Header("Movimento")]
     [SerializeField] private float velocidade = 5f;
     [SerializeField] private float velocidadeCorrendo = 8f;
-    [SerializeField] private Animator animacao;
+    // [SerializeField] private Animator animacao; // 🔸 Animação desativada
 
     [Header("Pulo")]
     public bool isGrounded;
@@ -49,10 +49,11 @@ public class Player : MonoBehaviour
         // Corrida
         correndo = Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.JoystickButton4);
 
-        // Atualiza Animator sempre
+        /* 🔸 Sistema de animação desativado
         animacao.SetFloat("Velocidade", Mathf.Abs(inputHorizontal));
         animacao.SetBool("NoChao", isGrounded);
         animacao.SetBool("Correndo", correndo);
+        */
 
         // Rolamento
         if ((Input.GetKeyDown(KeyCode.LeftControl) || Input.GetKeyDown(KeyCode.JoystickButton1)) && isGrounded && !rolando)
@@ -77,7 +78,8 @@ public class Player : MonoBehaviour
                 {
                     rb.velocity = new Vector2(rb.velocity.x, 0f);
                     rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
-                    animacao.SetTrigger("Pulo");
+
+                    // animacao.SetTrigger("Pulo"); // 🔸 Removido
 
                     if (!isGrounded)
                         podeDuploPulo = false;
@@ -85,7 +87,7 @@ public class Player : MonoBehaviour
             }
         }
 
-        // Animações no chão
+        /* 🔸 Bloco completo de animações no chão removido
         if (isGrounded)
         {
             if (Mathf.Abs(inputHorizontal) > 0.01f)
@@ -106,6 +108,7 @@ public class Player : MonoBehaviour
             animacao.SetBool("parado", false);
             animacao.SetBool("andando", false);
         }
+        */
     }
 
     private void FixedUpdate()
@@ -126,7 +129,7 @@ public class Player : MonoBehaviour
     private IEnumerator Rolamento()
     {
         rolando = true;
-        animacao.SetTrigger("Rolamento");
+        // animacao.SetTrigger("Rolamento"); // 🔸 Desativado
 
         // Ajusta collider
         capsuleCollider2D.size = tamanhoColliderRolamento;
@@ -138,10 +141,11 @@ public class Player : MonoBehaviour
         yield return new WaitForSeconds(duracaoRolamento);
 
         // Restaura collider
-       capsuleCollider2D.size = tamanhoColliderOriginal;
+        capsuleCollider2D.size = tamanhoColliderOriginal;
 
-        // Garante que o rolamento terminou e o Animator não trava
+        // Garante que o rolamento terminou
         rolando = false;
-        animacao.ResetTrigger("Rolamento"); // opcional, só para garantir
+
+        // animacao.ResetTrigger("Rolamento"); // 🔸 Removido
     }
 }
