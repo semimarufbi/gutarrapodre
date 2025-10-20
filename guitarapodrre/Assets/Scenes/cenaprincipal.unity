@@ -313,11 +313,6 @@ CapsuleCollider2D:
   m_Offset: {x: -0.2918325, y: 1.6968673}
   m_Size: {x: 1.1215671, y: 3.463257}
   m_Direction: 0
---- !u!95 &427829426 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 4822398208353430945, guid: ee14459f600f6ec4783a1f1bae436bcc, type: 3}
-  m_PrefabInstance: {fileID: 1363445526}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &427829429
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -332,7 +327,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   velocidade: 5
   velocidadeCorrendo: 8
-  animacao: {fileID: 427829426}
   isGrounded: 0
   jumpForce: 20
   groundCheck: {fileID: 1952568737}
@@ -358,7 +352,7 @@ GameObject:
   - component: {fileID: 478160099}
   - component: {fileID: 478160098}
   m_Layer: 0
-  m_Name: dialogomanager
+  m_Name: DialogManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
