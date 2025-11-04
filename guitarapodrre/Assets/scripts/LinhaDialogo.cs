@@ -7,9 +7,3 @@ public class LinhaDialogo
     [TextArea(2, 5)]
     public string texto;
 }
-
-[CreateAssetMenu(fileName = "NovoDialogo", menuName = "Dialogo/Novo")]
-public class Dialogo : ScriptableObject
-{
-    public LinhaDialogo[] falas;
-}

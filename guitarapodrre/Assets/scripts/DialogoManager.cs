@@ -7,8 +7,9 @@ public class DialogoManager : MonoBehaviour
     public static DialogoManager Instance;
 
     [Header("Prefabs de balão por personagem")]
-    public GameObject balaoPlayerPrefab;
-    public GameObject balaoNPCPrefab;
+
+    [SerializeField] public GameObject balaoPlayerPrefab;
+    [SerializeField] public GameObject balaoNPCPrefab;
 
     [Header("Canvas Pai (Screen Space - Overlay)")]
     public Transform canvasPai;

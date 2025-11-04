@@ -6,7 +6,7 @@ public class Player : MonoBehaviour
     [Header("Movimento")]
     [SerializeField] private float velocidade = 5f;
     [SerializeField] private float velocidadeCorrendo = 8f;
-    // [SerializeField] private Animator animacao; // 🔸 Animação desativada
+    [SerializeField] private Animator animacao; // 🔸 Animação desativada
 
     [Header("Pulo")]
     public bool isGrounded;
@@ -49,17 +49,13 @@ public class Player : MonoBehaviour
         // Corrida
         correndo = Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.JoystickButton4);
 
-        /* 🔸 Sistema de animação desativado
+         
         animacao.SetFloat("Velocidade", Mathf.Abs(inputHorizontal));
         animacao.SetBool("NoChao", isGrounded);
         animacao.SetBool("Correndo", correndo);
-        */
+        
 
-        // Rolamento
-        if ((Input.GetKeyDown(KeyCode.LeftControl) || Input.GetKeyDown(KeyCode.JoystickButton1)) && isGrounded && !rolando)
-        {
-            StartCoroutine(Rolamento());
-        }
+       
 
         if (!rolando)
         {
@@ -87,7 +83,7 @@ public class Player : MonoBehaviour
             }
         }
 
-        /* 🔸 Bloco completo de animações no chão removido
+        
         if (isGrounded)
         {
             if (Mathf.Abs(inputHorizontal) > 0.01f)
@@ -108,7 +104,7 @@ public class Player : MonoBehaviour
             animacao.SetBool("parado", false);
             animacao.SetBool("andando", false);
         }
-        */
+        
     }
 
     private void FixedUpdate()
@@ -126,26 +122,5 @@ public class Player : MonoBehaviour
             transform.localScale = new Vector3(1, 1, 1);
     }
 
-    private IEnumerator Rolamento()
-    {
-        rolando = true;
-        // animacao.SetTrigger("Rolamento"); // 🔸 Desativado
-
-        // Ajusta collider
-        capsuleCollider2D.size = tamanhoColliderRolamento;
-
-        // Move rapidamente na direção atual
-        float dir = transform.localScale.x;
-        rb.velocity = new Vector2(dir * velocidadeCorrendo * 1.5f, rb.velocity.y);
-
-        yield return new WaitForSeconds(duracaoRolamento);
-
-        // Restaura collider
-        capsuleCollider2D.size = tamanhoColliderOriginal;
-
-        // Garante que o rolamento terminou
-        rolando = false;
-
-        // animacao.ResetTrigger("Rolamento"); // 🔸 Removido
-    }
+    
 }

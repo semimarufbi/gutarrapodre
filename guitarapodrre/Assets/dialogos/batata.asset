@@ -9,9 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
+  m_Script: {fileID: 11500000, guid: b83a9bf4a66b80e4da271561f1c04e7c, type: 3}
   m_Name: batata
   m_EditorClassIdentifier: Assembly-CSharp::Dialogo
-  falas:
-  - nome: 
-    texto: 
+  falas: []

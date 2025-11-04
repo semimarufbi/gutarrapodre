@@ -51,7 +51,7 @@ public class NoteMapEditor : EditorWindow
     private int waveformWidth = 1024;
     private int waveformHeight = 120;
 
-    [MenuItem("Tools/Note Map Editor")]
+ 
     public static void ShowWindow()
     {
         GetWindow<NoteMapEditor>("Note Map Editor").Show();
