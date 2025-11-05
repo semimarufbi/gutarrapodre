@@ -19,21 +19,12 @@ public class Player : MonoBehaviour
     [Header("Corrida")]
     private bool correndo;
 
-    [Header("Rolamento")]
-    private bool rolando = false;
-    [SerializeField] private float duracaoRolamento = 0.5f;
-    [SerializeField] private Vector2 tamanhoColliderRolamento = new Vector2(1f, 0.5f);
-    private Vector2 tamanhoColliderOriginal;
-    private CapsuleCollider2D capsuleCollider2D;
-
     private float inputHorizontal;
     private Rigidbody2D rb;
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
-        capsuleCollider2D = GetComponent<CapsuleCollider2D>();
-        tamanhoColliderOriginal = capsuleCollider2D.size;
 
         if (rb.gravityScale < 3f)
             rb.gravityScale = 5f;
@@ -57,30 +48,10 @@ public class Player : MonoBehaviour
 
        
 
-        if (!rolando)
-        {
-            // Checa chão
-            bool groundedAnterior = isGrounded;
-            isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
+            // animacao.SetTrigger("Pulo"); // 🔸 Removido
 
-            // Reseta duplo pulo
-            if (isGrounded && !groundedAnterior)
-                podeDuploPulo = true;
-
-            // Pulo
-            if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.JoystickButton0) && isGrounded)
-            {
-                if (isGrounded || podeDuploPulo)
-                {
-                    rb.velocity = new Vector2(rb.velocity.x, 0f);
-                    rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
-
-                    // animacao.SetTrigger("Pulo"); // 🔸 Removido
-
-                    if (!isGrounded)
-                        podeDuploPulo = false;
-                }
-            }
+            if (!isGrounded)
+                podeDuploPulo = false;
         }
 
         
@@ -110,8 +81,7 @@ public class Player : MonoBehaviour
     private void FixedUpdate()
     {
         float velocidadeAtual = correndo ? velocidadeCorrendo : velocidade;
-        if (!rolando)
-            rb.velocity = new Vector2(inputHorizontal * velocidadeAtual, rb.velocity.y);
+        rb.velocity = new Vector2(inputHorizontal * velocidadeAtual, rb.velocity.y);
     }
 
     private void spriteFlip(float horizontal)
