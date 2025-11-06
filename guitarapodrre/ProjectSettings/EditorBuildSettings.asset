@@ -9,9 +9,12 @@ EditorBuildSettings:
     path: Assets/Scenes/cenaprincipal.unity
     guid: 2cda990e2423bbf4892e6590ba056729
   - enabled: 1
+    path: Assets/Scenes/OpenWorld.unity
+    guid: 3015bbd984e7dc64385f2b1075e0635e
+  - enabled: 1
     path: Assets/Scenes/ritmo.unity
     guid: 1bb3a60dfa9590f468fd742ddd5cb3d5
   - enabled: 1
-    path: Assets/Scenes/OpenWorld.unity
-    guid: 3015bbd984e7dc64385f2b1075e0635e
+    path: Assets/Scenes/cenafinal.unity
+    guid: a03da058bc6d1734494da3a2e721b63d
   m_configObjects: {}
