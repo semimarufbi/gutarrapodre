@@ -399,7 +399,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 0.5}
   m_EdgeRadius: 0
---- !u!1 &153998306
+--- !u!1 &162275006
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -407,42 +407,42 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 153998307}
-  - component: {fileID: 153998309}
-  - component: {fileID: 153998308}
+  - component: {fileID: 162275007}
+  - component: {fileID: 162275009}
+  - component: {fileID: 162275008}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: Jogo Pausado
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!224 &153998307
+--- !u!224 &162275007
 RectTransform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 153998306}
+  m_GameObject: {fileID: 162275006}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2.7235, y: 2.7235, z: 2.7235}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1717248626}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.364604, y: 0.7954815}
-  m_AnchorMax: {x: 0.7062916, y: 0.9258519}
-  m_AnchoredPosition: {x: -56.5, y: -3}
-  m_SizeDelta: {x: -456, y: -91}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 140}
+  m_SizeDelta: {x: 443.9758, y: 64.6837}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &153998308
+--- !u!114 &162275008
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 153998306}
+  m_GameObject: {fileID: 162275006}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
@@ -483,8 +483,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
-  m_fontSizeBase: 36
+  m_fontSize: 60.6
+  m_fontSizeBase: 60.6
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -519,19 +519,19 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: -40.291267, w: 0}
+  m_margin: {x: 0, y: 0, z: -4.5180664, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!222 &153998309
+--- !u!222 &162275009
 CanvasRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 153998306}
+  m_GameObject: {fileID: 162275006}
   m_CullTransparentMesh: 1
 --- !u!1 &319441984
 GameObject:
@@ -1622,6 +1622,7 @@ MonoBehaviour:
   superDuracao: 10
   SuperManager: {fileID: 393868537}
   superParticulas: {fileID: 1752139648}
+  proximaCena: TelaFinal
 --- !u!4 &1106723972
 Transform:
   m_ObjectHideFlags: 0
@@ -2306,7 +2307,7 @@ GameObject:
   - component: {fileID: 1717248628}
   - component: {fileID: 1717248627}
   m_Layer: 5
-  m_Name: Panel
+  m_Name: pause
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2324,7 +2325,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 153998307}
+  - {fileID: 162275007}
   m_Father: {fileID: 1864343984}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -2345,7 +2346,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.392}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -7382,7 +7383,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1864343981
 MonoBehaviour:
   m_ObjectHideFlags: 0

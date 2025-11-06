@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement; // 🔹 Necessário para trocar de cena
 
 public class gameManager : MonoBehaviour
 {
@@ -27,9 +28,12 @@ public class gameManager : MonoBehaviour
 
     public ParticleSystem superParticulas; // Partículas do super
 
+    [Header("Cena de Fim")]
+    [SerializeField] private string proximaCena = "TelaFinal"; // 🔹 Nome da cena a carregar
+    private bool musicaTerminou = false; // 🔹 Evita chamar a troca mais de uma vez
+
     void Awake()
     {
-        
         if (instance == null)
         {
             instance = this;
@@ -54,21 +58,33 @@ public class gameManager : MonoBehaviour
 
     void Update()
     {
+        // 🔹 Checa se o super está ativo
         if (superAtivo)
         {
             superTimer -= Time.deltaTime;
             if (superTimer <= 0)
-            {
                 DesativarSuper();
-            }
         }
+
+        // 🔹 Checa se a música terminou
+        if (theMusic != null && startPlaying && !theMusic.isPlaying && !musicaTerminou)
+        {
+            musicaTerminou = true;
+            TrocarCenaQuandoMusicaAcabar();
+        }
+    }
+
+    private void TrocarCenaQuandoMusicaAcabar()
+    {
+        Debug.Log("Música terminou! Carregando próxima cena...");
+        SceneManager.LoadScene(proximaCena);
     }
 
     public void NoteHit(bool especial = false)
     {
-        score += 100 * currentMultiplier; // Aplica o multiplicador
+        score += 100 * currentMultiplier;
 
-        if (especial && !superAtivo) // Só acumula progresso se super não está ativo
+        if (especial && !superAtivo)
         {
             SuperManager.AddCharge(1);
             superProgress++;
@@ -106,8 +122,8 @@ public class gameManager : MonoBehaviour
     {
         superAtivo = true;
         superTimer = superDuracao;
-        superProgress = 0; // Reseta a barra
-        currentMultiplier = 2; // Define multiplicador padrão (pode ser sobrescrito por SetMultiplier)
+        superProgress = 0;
+        currentMultiplier = 2;
 
         if (superParticulas != null)
             superParticulas.Play();
@@ -120,7 +136,7 @@ public class gameManager : MonoBehaviour
     private void DesativarSuper()
     {
         superAtivo = false;
-        currentMultiplier = 1; // Reseta o multiplicador
+        currentMultiplier = 1;
 
         if (superParticulas != null)
             superParticulas.Stop();
@@ -130,12 +146,11 @@ public class gameManager : MonoBehaviour
         Debug.Log("SUPER DESATIVADO!");
     }
 
-    // Método chamado por SuperManager para ativar super com multiplicador
     public void SetMultiplier(int multiplier, float duration)
     {
         superAtivo = true;
         superTimer = duration;
-        superProgress = 0; // Reseta a barra
+        superProgress = 0;
         currentMultiplier = multiplier;
 
         if (superParticulas != null)
