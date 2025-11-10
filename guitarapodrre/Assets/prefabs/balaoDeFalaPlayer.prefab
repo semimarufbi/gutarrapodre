@@ -168,8 +168,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5448124, y: 0.5}
   m_AnchorMax: {x: 0.5448124, y: 0.5}
-  m_AnchoredPosition: {x: -790, y: -57.923}
-  m_SizeDelta: {x: 4.0572, y: 4.3601}
+  m_AnchoredPosition: {x: -928, y: -90}
+  m_SizeDelta: {x: 2.7375, y: 2.4438}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5301805330461369237
 CanvasRenderer:
@@ -221,7 +221,7 @@ GameObject:
   - component: {fileID: 8514840253754898477}
   - component: {fileID: 1089078340860511633}
   m_Layer: 5
-  m_Name: balaodefalaplayer
+  m_Name: balaoDeFalaPlayer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

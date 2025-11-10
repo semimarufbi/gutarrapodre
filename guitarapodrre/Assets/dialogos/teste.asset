@@ -14,10 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Dialogo
   falas:
   - nome: Player
-    texto: Ola tudo certo
+    texto: "Ol\xE1, tudo certo?"
   - nome: NPC
-    texto: claro,tenho que te ensinar o basico sobre suas abilidades
+    texto: "Claro, vale lembrar que tenho que te ensinar o b\xE1sico sobre suas habilidades."
   - nome: Player
-    texto: fecho vamos repasar isso
+    texto: Fechou, vamos repassar isso.
   - nome: NPC
-    texto: VAMBORA
+    texto: "Beleza, vamos l\xE1 ent\xE3o!"

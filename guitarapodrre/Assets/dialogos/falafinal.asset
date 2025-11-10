@@ -14,11 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   falas:
   - nome: NPC
-    texto: Meus parabens voce esta finalmente preparada para combater a industria
-      musical com seu poderes
+    texto: "Meus parab\xE9ns! Voc\xEA est\xE1 finalmente preparada para combater
+      a ind\xFAstria musical com sua habilidade."
   - nome: Player
-    texto: Prometo que irei salvar esse mundo desse terrivel vilao
+    texto: "Prometo que vou salvar a cultura desse terr\xEDvel vil\xE3o."
   - nome: NPC
-    texto: "v\xE1 em frente e temine logo com isso"
+    texto: "V\xE1 em frente e termine logo com isso."
   - nome: Player
-    texto: Vou indo obrigado por tudo
+    texto: Vou indo, obrigado por tudo.
