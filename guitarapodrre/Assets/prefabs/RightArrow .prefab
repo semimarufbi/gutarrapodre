@@ -101,12 +101,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 5
   limiteY: -5
-  corNormal: {r: 1, g: 1, b: 1, a: 1}
-  corEspecial: {r: 1, g: 0.84, b: 0, a: 1}
+  corNormal: {r: 0.85882354, g: 0.79607844, b: 0.078431375, a: 1}
+  corEspecial: {r: 0.3019608, g: 0.07450981, b: 0.5372549, a: 1}
   efeitoEspecial: {fileID: 0}
   hitEffect: {fileID: 0}
-  somAcerto: {fileID: 0}
-  somErro: {fileID: 0}
+  somAcerto: {fileID: 8300000, guid: fb4e7ceaa2cdb69488a7c5ea1df9d5ed, type: 3}
+  volumeAcerto: 0.6
+  somErro: {fileID: 8300000, guid: d39ce6424ad142e4badc87258605e931, type: 3}
+  volumeErro: 0.6
+  specialReplaceMaterial: {fileID: 2100000, guid: 13899480f0afed74d8dae734a91f1147, type: 2}
   jaAcertada: 0
 --- !u!114 &-4933686334916338703
 MonoBehaviour:
