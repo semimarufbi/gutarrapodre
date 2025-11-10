@@ -4,23 +4,30 @@ using UnityEngine;
 
 public class InteracaoNPC2 : MonoBehaviour
 {
-    public Dialogo dialogo; // asset do diálogo final
+    [Header("Referência ao diálogo")]
+    public Dialogo dialogo; // asset criado no projeto
+
+    private bool iniciouDialogo = false;
 
     void Start()
     {
-        // Espera um pequeno tempo antes de começar (garante que o DialogoManager já está na cena)
-        Invoke(nameof(IniciarDialogoFinal), 0.2f);
-    }
-
-    void IniciarDialogoFinal()
-    {
-        if (DialogoManager.Instance != null && !DialogoManager.Instance.EmDialogo)
+        // Inicia o diálogo automaticamente ao carregar a cena
+        if (dialogo != null)
         {
             DialogoManager.Instance.IniciarDialogo(dialogo);
+            iniciouDialogo = true;
         }
-        else
+    }
+
+    void Update()
+    {
+        // Se o diálogo já começou, permite avançar com E ou botão do controle
+        if (iniciouDialogo && DialogoManager.Instance.EmDialogo)
         {
-            Debug.LogWarning("DialogoManager não encontrado ou diálogo já ativo!");
+            if (Input.GetKeyDown(KeyCode.E) || Input.GetKeyDown(KeyCode.JoystickButton2))
+            {
+                DialogoManager.Instance.ProximaLinha();
+            }
         }
     }
 }

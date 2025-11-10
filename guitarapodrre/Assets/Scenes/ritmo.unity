@@ -142,7 +142,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &167249
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -405,7 +405,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2b1097353a29bd42a3c0aa0283b54e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mapaJson: {fileID: 4900000, guid: a5c0a7afe7a0ca14d9e235168ad2a828, type: 3}
+  mapaJson: {fileID: 4900000, guid: 5c5bb2c0b19b792469a6deff1618b403, type: 3}
   laneSpawners:
   - {fileID: 756679148}
   - {fileID: 939672102}
@@ -2941,10 +2941,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 167253}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: -0.020019531, y: -0.0004272461}
+  m_SizeDelta: {x: -1825.27, y: -982.75}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1021616049
 GameObject:
@@ -3870,10 +3870,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1605572182}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.012, y: 0}
-  m_AnchorMax: {x: 0.3496042, y: 0.09200001}
-  m_AnchoredPosition: {x: -2, y: -73}
-  m_SizeDelta: {x: -448, y: -15}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0.4134792, y: 0.105000004}
+  m_AnchoredPosition: {x: 0.1730957, y: -0.4389038}
+  m_SizeDelta: {x: -552.39, y: -78.464}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1599940220
 MonoBehaviour:
@@ -3958,7 +3958,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: 0, y: 0, z: 0, w: -0.0000019144777}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -9713,7 +9713,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 0.3019608, g: 0.07450981, b: 0.5372549, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -9724,7 +9724,7 @@ MonoBehaviour:
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 1
-  m_FillAmount: 0.889
+  m_FillAmount: 0.992
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
@@ -10255,7 +10255,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 22f5d7d56d2aedc43a95741950f78a4e, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 33241d4e305fe6b4ea226254ccbc363b, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -10388,10 +10388,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1605572182}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.64775014, y: 0}
-  m_AnchorMax: {x: 1, y: 0.117000006}
-  m_AnchoredPosition: {x: -7, y: -63}
-  m_SizeDelta: {x: -475, y: -38}
+  m_AnchorMin: {x: 0.6487918, y: 0}
+  m_AnchorMax: {x: 1, y: 0.13385186}
+  m_AnchoredPosition: {x: -0.9501953, y: 0.5618286}
+  m_SizeDelta: {x: -468.71, y: -100.125}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2094741724
 MonoBehaviour:
@@ -10476,7 +10476,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 38.548332}
+  m_margin: {x: 0, y: 0, z: 0, w: 0.021650318}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
