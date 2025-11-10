@@ -112,19 +112,20 @@ public class NoteObject : MonoBehaviour
     }
 
     // Toca som em GameObject temporário que persiste até o fim do clip
-    private void TocarSomPersistente(AudioClip clip, float volume)
+    private void TocarSomPersistente(AudioClip clip, float volumeLocal)
     {
         if (clip == null) return;
 
         GameObject go = new GameObject("TempAudio_" + clip.name);
-        DontDestroyOnLoad(go); // evita que algo o destrua por cena
+        DontDestroyOnLoad(go);
         AudioSource src = go.AddComponent<AudioSource>();
         src.clip = clip;
-        src.volume = Mathf.Clamp01(volume);
+        src.volume = Mathf.Clamp01(volumeLocal * VolumeController.volumeEfeitos);
         src.playOnAwake = false;
-        src.spatialBlend = 0f; // 2D sound, evita problemas de distância
+        src.spatialBlend = 0f;
         src.loop = false;
         src.Play();
-        Destroy(go, clip.length + 0.25f); // destrói depois do som terminar
+        Destroy(go, clip.length + 0.25f);
     }
+
 }

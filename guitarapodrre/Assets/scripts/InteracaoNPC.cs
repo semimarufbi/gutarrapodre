@@ -2,31 +2,30 @@ using UnityEngine;
 
 public class InteracaoNPC : MonoBehaviour
 {
-    public Dialogo dialogo; // asset criado
-    private bool dentro = false;
+    [Header("Referência ao diálogo")]
+    public Dialogo dialogo; // asset criado no projeto
 
-    void Update()
+    private bool iniciouDialogo = false;
+
+    void Start()
     {
-        // Só inicia diálogo quando estiver perto e não houver diálogo ativo
-        if ((dentro && Input.GetKeyDown(KeyCode.E)) || dentro && Input.GetKeyDown(KeyCode.JoystickButton2))
+        // Inicia o diálogo automaticamente ao carregar a cena
+        if (dialogo != null)
         {
-            if (!DialogoManager.Instance.EmDialogo)
-            {
-                DialogoManager.Instance.IniciarDialogo(dialogo);
-            }
-            // não chamamos ProximaLinha() aqui — o DialogoManager já escuta E globalmente enquanto EmDialogo == true
+            DialogoManager.Instance.IniciarDialogo(dialogo);
+            iniciouDialogo = true;
         }
     }
 
-    void OnTriggerEnter2D(Collider2D other)
+    void Update()
     {
-        if (other.CompareTag("Player"))
-            dentro = true;
-    }
-
-    void OnTriggerExit2D(Collider2D other)
-    {
-        if (other.CompareTag("Player"))
-            dentro = false;
+        // Se o diálogo já começou, permite avançar com E ou botão do controle
+        if (iniciouDialogo && DialogoManager.Instance.EmDialogo)
+        {
+            if (Input.GetKeyDown(KeyCode.E) || Input.GetKeyDown(KeyCode.JoystickButton2))
+            {
+                DialogoManager.Instance.ProximaLinha();
+            }
+        }
     }
 }

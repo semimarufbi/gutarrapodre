@@ -5,6 +5,12 @@ using System.IO;
 
 public class NoteMapEditor : EditorWindow
 {
+    [MenuItem("Tools/Note Map Editor")] // 🔹 ESSA LINHA É O QUE FAZ APARECER NO MENU
+    public static void ShowWindow()
+    {
+        GetWindow<NoteMapEditor>("Note Map Editor").Show();
+    }
+
     [System.Serializable]
     public class Note
     {
@@ -19,7 +25,6 @@ public class NoteMapEditor : EditorWindow
         public List<Note> notas = new List<Note>();
         public float bpm = 120f;
     }
-
     private NoteMap mapa = new NoteMap();
     private string saveFileName = "mapa";
 
@@ -52,10 +57,7 @@ public class NoteMapEditor : EditorWindow
     private int waveformHeight = 120;
 
 
-    public static void ShowWindow()
-    {
-        GetWindow<NoteMapEditor>("Note Map Editor").Show();
-    }
+    
 
     private void OnEnable()
     {
